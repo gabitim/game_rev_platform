@@ -1,4 +1,4 @@
-package model;
+package com.bd.GameRevPlatform.model;
 
 import java.util.Date;
 

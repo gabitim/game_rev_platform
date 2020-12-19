@@ -1,7 +1,7 @@
 package com.bd.GameRevPlatform;
 
-import dao.GameDao;
-import model.Game;
+import com.bd.GameRevPlatform.dao.GameDao;
+import com.bd.GameRevPlatform.model.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

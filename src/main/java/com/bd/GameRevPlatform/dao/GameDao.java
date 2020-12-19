@@ -1,14 +1,17 @@
-package dao;
+package com.bd.GameRevPlatform.dao;
 
-import model.Game;
+import com.bd.GameRevPlatform.model.Game;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * @author Timofti Gabriel
  */
+
+@Repository
 public class GameDao {
     private JdbcTemplate jdbcTemplate;
 
