@@ -1,7 +1,7 @@
 package com.bd.GameRevPlatform.api;
 
-import com.bd.GameRevPlatform.dao.GameDao;
 import com.bd.GameRevPlatform.model.Game;
+import com.bd.GameRevPlatform.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,18 +17,11 @@ import java.util.List;
 public class AppController {
 
     @Autowired
-    private GameDao gameDao;
+    private GameService gameService;
 
     @RequestMapping("/")
     public String viewHomePage(Model model) {
-        List<Game> games = gameDao.getAllGames();
-
-        for (Game game : games) {
-            String description = game.getDescription();
-            String short_description = description.substring(0, 80);
-            short_description += " ...";
-            game.setDescription(short_description);
-        }
+        List<Game> games = gameService.getAllGames();
 
         model.addAttribute("games", games);
 
