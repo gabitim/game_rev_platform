@@ -4,12 +4,15 @@ import com.bd.GameRevPlatform.model.Game;
 import com.bd.GameRevPlatform.model.Genre;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * @author Timofti Gabriel
  */
+
+@Repository
 public class GenreDao {
     private JdbcTemplate jdbcTemplate;
 

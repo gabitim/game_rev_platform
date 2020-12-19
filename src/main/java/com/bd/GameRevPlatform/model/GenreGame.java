@@ -4,8 +4,8 @@ package com.bd.GameRevPlatform.model;
  * @author Timofti Gabriel
  */
 public class GenreGame {
-    int genre_id;
-    int game_id;
+    private int genre_id;
+    private int game_id;
 
     public int getGenre_id() {
         return genre_id;

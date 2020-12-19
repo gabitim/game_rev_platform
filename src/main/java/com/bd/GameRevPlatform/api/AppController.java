@@ -1,7 +1,7 @@
 package com.bd.GameRevPlatform.api;
 
-import com.bd.GameRevPlatform.model.Game;
 import com.bd.GameRevPlatform.service.GameService;
+import com.bd.GameRevPlatform.service.game.FrontPageGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +21,7 @@ public class AppController {
 
     @RequestMapping("/")
     public String viewHomePage(Model model) {
-        List<Game> games = gameService.getAllGames();
+        List<FrontPageGame> games = gameService.getAllGamesFrontPage();
 
         model.addAttribute("games", games);
 

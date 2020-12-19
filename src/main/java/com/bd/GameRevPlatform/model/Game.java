@@ -63,7 +63,7 @@ public class Game {
 
     @Override
     public String toString() {
-        return "Game{" +
+        return
                 "game_id=" + game_id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
