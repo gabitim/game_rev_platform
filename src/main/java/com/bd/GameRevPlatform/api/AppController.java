@@ -1,5 +1,6 @@
 package com.bd.GameRevPlatform.api;
 
+import com.bd.GameRevPlatform.model.Game;
 import com.bd.GameRevPlatform.service.GameService;
 import com.bd.GameRevPlatform.service.game.FrontPageGame;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,13 @@ public class AppController {
         model.addAttribute("games", games);
 
         return "index";
+    }
+
+    @RequestMapping("/newGame")
+    public String viewEnterGamePage(Model model) {
+        FrontPageGame game = new FrontPageGame();
+        model.addAttribute("game", game);
+
+        return "new_game_form";
     }
 }
