@@ -22,16 +22,14 @@ public class GameDao {
     public List<Game> getAllGames() {
         String sql = "SELECT * FROM game";
 
-        List<Game> games = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Game.class));
-
-        return games;
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Game.class));
     }
 
     public void insertGame(Game game) {
 
     }
 
-    public Game getGame(int id) {
+    public Game getGame(int game_id) {
         return null;
     }
 
