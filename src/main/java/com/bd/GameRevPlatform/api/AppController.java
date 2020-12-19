@@ -22,6 +22,14 @@ public class AppController {
     @RequestMapping("/")
     public String viewHomePage(Model model) {
         List<Game> games = gameDao.getAllGames();
+
+        for (Game game : games) {
+            String description = game.getDescription();
+            String short_description = description.substring(0, 80);
+            short_description += " ...";
+            game.setDescription(short_description);
+        }
+
         model.addAttribute("games", games);
 
         return "index";
