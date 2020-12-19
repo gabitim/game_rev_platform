@@ -23,7 +23,7 @@ public class GenreGameService {
         return genreGameDao.getGenreIds(game_id);
     }
 
-    public int getGameId(int genre_id){
-        return genreGameDao.getGameId(genre_id);
+    public List<Integer> getGameId(int genre_id){
+        return genreGameDao.getGameIds(genre_id);
     }
 }

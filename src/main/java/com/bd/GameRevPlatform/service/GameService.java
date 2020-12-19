@@ -1,12 +1,9 @@
 package com.bd.GameRevPlatform.service;
 
 import com.bd.GameRevPlatform.dao.GameDao;
-import com.bd.GameRevPlatform.dao.GenreDao;
-import com.bd.GameRevPlatform.dao.GenreGameDao;
 import com.bd.GameRevPlatform.model.Game;
 import com.bd.GameRevPlatform.service.game.FrontPageGame;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
