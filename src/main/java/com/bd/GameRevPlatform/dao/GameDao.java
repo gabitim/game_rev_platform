@@ -27,9 +27,8 @@ public class GameDao {
     }
 
     public void insertGame(Game game) {
-        String insertSql = "INSERT INTO Game (game_id, title, description, release_date, rating, news_column) VALUES (?, ?, ?, ?, ?, ?)";
+        String insertSql = "INSERT INTO Game (title, description, release_date, rating, news_column) VALUES (?, ?, ?, ?, ?)";
         Object[] args = new Object[] {
-                game.getGame_id(),
                 game.getTitle(),
                 game.getDescription(),
                 game.getRelease_date(),
@@ -37,7 +36,7 @@ public class GameDao {
                 game.getNews_column()
         };
 
-        int[] types = new int[] {Types.NULL, Types.VARCHAR, Types.VARCHAR, Types.DATE, Types.NUMERIC, Types.VARCHAR};
+        int[] types = new int[] {Types.VARCHAR, Types.VARCHAR, Types.DATE, Types.NUMERIC, Types.VARCHAR};
 
         jdbcTemplate.update(insertSql, args, types);
     }

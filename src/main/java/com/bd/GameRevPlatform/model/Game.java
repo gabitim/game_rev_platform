@@ -13,6 +13,15 @@ public class Game {
     private double rating;
     private String news_column;
 
+    public Game(){}
+
+    public Game(String title, String description, Date release_date, double rating) {
+        this.title = title;
+        this.description = description;
+        this.release_date = release_date;
+        this.rating = rating;
+    }
+
     public int getGame_id() {
         return game_id;
     }
