@@ -34,12 +34,14 @@ public class GameService {
         // description is shortened to 80 chars
         for (Game game : games) {
             String description = game.getDescription();
-            String short_description = description.substring(0, 80);
-            short_description += " ...";
-            game.setDescription(short_description);
+            if (description.length() > 80) {
+                String short_description = description.substring(0, 80);
+                short_description += " ...";
+                game.setDescription(short_description);
+            }
         }
 
-        ArrayList<FrontPageGame> frontPageGames = new ArrayList();
+        ArrayList<FrontPageGame> frontPageGames = new ArrayList<>();
 
         //add genre for display
         for (Game game: games){
