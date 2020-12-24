@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class GameTest {
 
     @Test
     void testInsertGame() {
-        Game game = new Game( "Fifa 21", "ok game", new Date(2020, 12, 18), 4.9);
+        Game game = new Game( "Fifa 21", "ok game", new Date(2020, Calendar.DECEMBER, 18), 4.9);
         gameDao.insertGame(game);
     }
 

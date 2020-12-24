@@ -5,7 +5,41 @@
 <head>
     <meta charset="UTF-8">
     <title>New Game </title>
+
+    <!-- load the scripts, css for multiple genre input -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.css">
+
+    <!-- get current date for max date validation -->
+    <script>
+        function getCurrentDate() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+            if(dd<10){
+                 dd='0'+dd
+            }
+            if(mm<10){
+                mm='0'+mm
+            }
+
+            today = yyyy+'-'+mm+'-'+dd;
+            document.getElementById("release_date").setAttribute("max", today);
+        }
+    </script>
 </head>
+
+<!-- load the script for multiple genre input -->
+<script type="text/javascript">
+$(function() {
+    $(".select-genre").chosen();
+});
+</script>
+
 <body>
 <div align="center">
     <h1>Enter New Game</h1>
@@ -15,23 +49,35 @@
         <table border="1" cellpadding="10">
             <tr>
                 <td>Title:</td>
-                <td><input type="text" th:field="*{title}" ></td>
+                <td><input type="text" th:field="*{title}" required></td>
             </tr>
             <tr>
                 <td>Description:</td>
-                <td><input type="text" th:field="*{description}" ></td>
+                <td><input type="text" th:field="*{description}" required></td>
             </tr>
             <tr>
                 <td>Release Date:</td>
-                <td><input type="text" th:field="*{release_date}" ></td>
+                <td><input id="release_date" type="date" th:field="*{release_date}" required onfocus="getCurrentDate(this)"></td>
             </tr>
             <tr>
                 <td>Rating:</td>
-                <td><input type="text" th:field="*{rating}" ></td>
+                <td><input type="number" th:field="*{rating}" step="0.1" required min="1" max="5" value=""></td>
             </tr>
             <tr>
                 <td>Genre:</td>
-                <td><input type="text" th:field="*{genre}" ></td>
+                <td>
+                    <select class="select-genre" th:field="*{genre}" multiple="true" style="width:200px;" required>
+
+                        <!-- options for genre are hard coded for now   -->
+                        <option value="action">action</option>
+                        <option value="generic">generic</option>
+                        <option value="moba">moba</option>
+                        <option value="rpg">rpg</option>
+                        <option value="simulation">simulation</option>
+                        <option value="shoting">shoting</option>
+
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td colspan="2"><button type="submit">Save</button></td>

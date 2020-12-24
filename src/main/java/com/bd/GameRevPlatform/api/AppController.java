@@ -1,6 +1,5 @@
 package com.bd.GameRevPlatform.api;
 
-import com.bd.GameRevPlatform.model.Game;
 import com.bd.GameRevPlatform.service.GameService;
 import com.bd.GameRevPlatform.service.game.FrontPageGame;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,4 +35,6 @@ public class AppController {
 
         return "new_game_form";
     }
+
+
 }
