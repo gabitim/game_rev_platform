@@ -3,9 +3,11 @@ package com.bd.GameRevPlatform.dao;
 import com.bd.GameRevPlatform.model.Game;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Types;
+import java.sql.*;
 import java.util.List;
 
 /**
@@ -27,18 +29,27 @@ public class GameDao {
     }
 
     public void insertGame(Game game) {
-        String insertSql = "INSERT INTO Game (title, description, release_date, rating, news_column) VALUES (?, ?, ?, ?, ?)";
-        Object[] args = new Object[] {
-                game.getTitle(),
-                game.getDescription(),
-                game.getRelease_date(),
-                game.getRating(),
-                game.getNews_column()
-        };
+        // when inserting a new game we must know the autoincrement id.
 
-        int[] types = new int[] {Types.VARCHAR, Types.VARCHAR, Types.DATE, Types.NUMERIC, Types.VARCHAR};
+        String insertSql = "INSERT INTO Game (title, description, release_date, rating, news_column) " +
+                "VALUES (?, ?, ?, ?, ?)";
+        int game_id = 0;
 
-        jdbcTemplate.update(insertSql, args, types);
+        // use KeyHolder and PreparedStatement to get the autoincrement id from oracle db
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(conn -> {
+            PreparedStatement ps = conn.prepareStatement(insertSql, new String[] { "game_id" });
+            ps.setString(1, game.getTitle());
+            ps.setString(2, game.getDescription());
+            ps.setDate(3,  new java.sql.Date(game.getRelease_date().getTime()));
+            ps.setDouble(4, game.getRating());
+            ps.setString(5, game.getNews_column());
+            return ps;
+        }, keyHolder);
+        game_id = keyHolder.getKey().intValue();
+
+        game.setGame_id(game_id);
     }
 
     public Game getGame(int game_id) {

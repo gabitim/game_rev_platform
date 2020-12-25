@@ -2,7 +2,9 @@ package com.bd.GameRevPlatform.service.game;
 
 import com.bd.GameRevPlatform.model.Game;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 /**
  * @author Timofti Gabriel
@@ -10,6 +12,7 @@ import java.util.Date;
 public class FrontPageGame extends Game {
 
     private String genre;
+    private String release_date_string;
 
     public FrontPageGame() {}
 
@@ -19,6 +22,15 @@ public class FrontPageGame extends Game {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public String getRelease_date_string() {
+        return release_date_string;
+    }
+
+    public void setRelease_date_string(Date release_date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        this.release_date_string = format.format(release_date);
     }
 
     @Override

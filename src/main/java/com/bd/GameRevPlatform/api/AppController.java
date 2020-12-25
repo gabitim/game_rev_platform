@@ -5,8 +5,11 @@ import com.bd.GameRevPlatform.service.game.FrontPageGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -20,7 +23,7 @@ public class AppController {
     private GameService gameService;
 
     @RequestMapping("/")
-    public String viewHomePage(Model model) {
+    public String viewHomePage(Model model) throws ParseException {
         List<FrontPageGame> games = gameService.getAllGamesFrontPage();
 
         model.addAttribute("games", games);
@@ -36,5 +39,11 @@ public class AppController {
         return "new_game_form";
     }
 
+    @RequestMapping(value = "/saveGame", method = RequestMethod.POST)
+    public String saveGame(@ModelAttribute("game") FrontPageGame game) {
+        gameService.saveGame(game);
+
+        return "redirect:/";
+    }
 
 }

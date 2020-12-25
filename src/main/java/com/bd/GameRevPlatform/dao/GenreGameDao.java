@@ -1,8 +1,10 @@
 package com.bd.GameRevPlatform.dao;
 
+import com.bd.GameRevPlatform.model.GenreGame;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Types;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,5 +31,17 @@ public class GenreGameDao {
         Object[] args = {genre_id};
 
         return Objects.requireNonNull(jdbcTemplate.queryForList(sql, args, Integer.class));
+    }
+
+    public void insertGenreGame(GenreGame genreGame){
+        String insertSql = "INSERT INTO GenreGame (genre_id, game_id) VALUES (?, ?)";
+        Object[] args = new Object[] {
+                genreGame.getGenre_id(),
+                genreGame.getGame_id()
+        };
+
+        int[] types = new int[] {Types.NUMERIC, Types.NUMERIC};
+
+        jdbcTemplate.update(insertSql, args, types);
     }
 }

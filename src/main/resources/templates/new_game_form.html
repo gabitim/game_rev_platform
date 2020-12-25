@@ -59,16 +59,18 @@ $(function() {
                 <td>Release Date:</td>
                 <td><input id="release_date" type="date" th:field="*{release_date}" required onfocus="getCurrentDate(this)"></td>
             </tr>
-            <tr>
-                <td>Rating:</td>
-                <td><input type="number" th:field="*{rating}" step="0.1" required min="1" max="5" value=""></td>
-            </tr>
-            <tr>
-                <td>Genre:</td>
-                <td>
-                    <select class="select-genre" th:field="*{genre}" multiple="true" style="width:200px;" required>
 
-                        <!-- options for genre are hard coded for now   -->
+           <tr>
+               <td>Rating:</td>
+               <td><input type="number" th:field="*{rating}" step="0.1" required min="1" max="5" value=""></td>
+           </tr>
+
+           <tr>
+               <td>Genre:</td>
+               <td>
+                   <select class="select-genre" th:field="*{genre}" multiple="true" style="width:200px;" required>
+
+                       <!-- options for genre are hard coded for now   -->
                         <option value="action">action</option>
                         <option value="generic">generic</option>
                         <option value="moba">moba</option>

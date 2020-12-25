@@ -1,5 +1,7 @@
 package com.bd.GameRevPlatform.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -9,6 +11,7 @@ public class Game {
     private int game_id;
     private String title;
     private String description;
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // for Thymeleaf
     private Date release_date;
     private double rating;
     private String news_column;
@@ -50,7 +53,7 @@ public class Game {
         return release_date;
     }
 
-    public void setRelease_date(Date release_date) {
+    public void setRelease_date(Date release_date){
         this.release_date = release_date;
     }
 

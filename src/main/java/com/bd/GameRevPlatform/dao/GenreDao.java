@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Timofti Gabriel
@@ -35,6 +36,13 @@ public class GenreDao {
         Object[] args = {genre_id};
 
         return jdbcTemplate.queryForObject(sql, args, BeanPropertyRowMapper.newInstance(Genre.class));
+    }
+
+    public Integer getGenreId(String genreDescription) {
+        String sql = "SELECT genre_id FROM Genre WHERE description = ?";
+        Object[] args = {genreDescription};
+
+        return Objects.requireNonNull(jdbcTemplate.queryForObject(sql, args, Integer.class));
     }
 
     public void updateGame(Game game) {

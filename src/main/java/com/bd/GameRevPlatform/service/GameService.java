@@ -6,6 +6,7 @@ import com.bd.GameRevPlatform.service.game.FrontPageGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class GameService {
         this.gameDao = gameDao;
     }
 
-    public List<FrontPageGame> getAllGamesFrontPage() {
+    public List<FrontPageGame> getAllGamesFrontPage() throws ParseException {
         List<Game> games = gameDao.getAllGames();
 
         // description is shortened to 80 chars
@@ -49,7 +50,7 @@ public class GameService {
 
             frontPageGame.setTitle(game.getTitle());
             frontPageGame.setDescription(game.getDescription());
-            frontPageGame.setRelease_date(game.getRelease_date());
+            frontPageGame.setRelease_date_string(game.getRelease_date());
             frontPageGame.setRating(game.getRating());
             frontPageGame.setGenre(
                     genreService.getGenreDescription(genreGameService.getGenreId(game.getGame_id()))
@@ -59,5 +60,10 @@ public class GameService {
         }
 
         return frontPageGames;
+    }
+
+    public void saveGame(FrontPageGame frontPageGame){
+        gameDao.insertGame(frontPageGame);
+        genreGameService.saveGenreGame(frontPageGame.getGame_id(), frontPageGame.getGenre());
     }
 }
