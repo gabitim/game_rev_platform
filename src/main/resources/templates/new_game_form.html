@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www..thymeleaf.org"
->
+      xmlns:form="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>New Game </title>
@@ -70,13 +70,8 @@ $(function() {
                <td>
                    <select class="select-genre" th:field="*{genre}" multiple="true" style="width:200px;" required>
 
-                       <!-- options for genre are hard coded for now   -->
-                        <option value="action">action</option>
-                        <option value="generic">generic</option>
-                        <option value="moba">moba</option>
-                        <option value="rpg">rpg</option>
-                        <option value="simulation">simulation</option>
-                        <option value="shoting">shoting</option>
+                       <option th:each="genre : ${genres}" th:value="${genre.description}" th:text="${genre.description}">
+                       </option>
 
                     </select>
                 </td>
@@ -87,10 +82,9 @@ $(function() {
 
         </table>
     </form>
-
-
-
 </div>
+
+
 
 </body>
 </html>
