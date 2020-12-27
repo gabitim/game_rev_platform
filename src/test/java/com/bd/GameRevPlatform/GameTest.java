@@ -1,6 +1,9 @@
 package com.bd.GameRevPlatform;
 
 import com.bd.GameRevPlatform.dao.GameDao;
+import com.bd.GameRevPlatform.dao.GameSessionDao;
+import com.bd.GameRevPlatform.dao.GenreGameDao;
+import com.bd.GameRevPlatform.dao.ReviewDao;
 import com.bd.GameRevPlatform.model.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,6 +24,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class GameTest {
     private GameDao gameDao;
+    private GenreGameDao genreGameDao;
+    private ReviewDao reviewDao;
+    private GameSessionDao gameSessionDao;
 
     @BeforeEach
     void setUp() throws Exception{
@@ -31,6 +37,9 @@ public class GameTest {
         dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
 
         gameDao = new GameDao(new JdbcTemplate(dataSource));
+        genreGameDao = new GenreGameDao(new JdbcTemplate(dataSource));
+        reviewDao = new ReviewDao(new JdbcTemplate(dataSource));
+        gameSessionDao = new GameSessionDao(new JdbcTemplate(dataSource));
     }
 
     @Test
@@ -68,6 +77,10 @@ public class GameTest {
 
     @Test
     void testDeleteGame() {
-        fail();
+        int game_id = 32;
+        genreGameDao.deleteGenreGame(game_id);
+        reviewDao.deleteReview(game_id);
+        gameSessionDao.deleteGameSession(game_id);
+        gameDao.deleteGame(game_id);
     }
 }

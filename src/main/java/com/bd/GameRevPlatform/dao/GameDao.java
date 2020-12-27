@@ -70,7 +70,8 @@ public class GameDao {
         temp.update(sql, param);
     }
 
-    public void deleteGame(int id) {
-
+    public void deleteGame(int game_id) {
+        String sql = "DELETE from Game WHERE game_id = ?";
+        jdbcTemplate.update(sql, game_id);
     }
 }

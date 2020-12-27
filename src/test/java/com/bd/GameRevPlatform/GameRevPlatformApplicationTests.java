@@ -6,6 +6,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class GameRevPlatformApplicationTests {
 	@Test
-	void test() {
+	void test() throws Exception {
+		GameTest gameTest = new GameTest();
+		gameTest.setUp();
+
+		gameTest.testGetAllGames();
 	}
 }
