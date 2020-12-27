@@ -12,8 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Timofti Gabriel
@@ -43,7 +42,10 @@ public class GameTest {
 
     @Test
     void testGetGame() {
-        fail();
+        int game_id = 27;
+        Game game = gameDao.getGame(game_id);
+
+        assertNotNull(game);
     }
 
     @Test
