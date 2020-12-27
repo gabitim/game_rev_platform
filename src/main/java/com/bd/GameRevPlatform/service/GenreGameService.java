@@ -48,4 +48,9 @@ public class GenreGameService {
         genreGameDao.deleteGenreGame(game_id);
         this.saveGenreGame(game_id, genres);
     }
+
+    public void deleteGenreGame(int game_id){
+        genreGameDao.deleteGenreGame(game_id);
+    }
+
 }

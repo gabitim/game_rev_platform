@@ -75,4 +75,11 @@ public class AppController {
         return "redirect:/";
     }
 
+    @RequestMapping("/delete/{game_id}")
+    public String deleteGame(@PathVariable(name = "game_id")int game_id ) {
+        gameService.deleteGame(game_id);
+
+        return "redirect:/";
+    }
+
 }

@@ -25,6 +25,12 @@ public class GameService {
     private GenreGameService genreGameService;
 
     @Autowired
+    private ReviewService reviewService;
+
+    @Autowired
+    private GameSessionService gameSessionService;
+
+    @Autowired
     public GameService(GameDao gameDao){
         this.gameDao = gameDao;
     }
@@ -84,5 +90,13 @@ public class GameService {
     public void updateGame(FrontPageGame frontPageGame){
         gameDao.updateGame(frontPageGame);
         genreGameService.updateGenreGame(frontPageGame.getGame_id(), frontPageGame.getGenre());
+    }
+
+    public void deleteGame(int game_id){
+        gameSessionService.deleteGameSession(game_id);
+        reviewService.deleteReview(game_id);
+        genreGameService.deleteGenreGame(game_id);
+
+        gameDao.deleteGame(game_id);
     }
 }
