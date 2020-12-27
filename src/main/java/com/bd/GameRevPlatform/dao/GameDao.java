@@ -3,6 +3,8 @@ package com.bd.GameRevPlatform.dao;
 import com.bd.GameRevPlatform.model.Game;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -60,7 +62,12 @@ public class GameDao {
     }
 
     public void updateGame(Game game) {
+        String sql = "UPDATE game SET title=:title, description=:description, release_date=:release_date, " +
+                "rating=:rating WHERE game_id=:game_id";
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(game);
+        NamedParameterJdbcTemplate temp = new NamedParameterJdbcTemplate(jdbcTemplate);
 
+        temp.update(sql, param);
     }
 
     public void deleteGame(int id) {

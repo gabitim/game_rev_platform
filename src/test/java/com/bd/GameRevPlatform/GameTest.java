@@ -56,7 +56,14 @@ public class GameTest {
 
     @Test
     void testUpdateGame() {
-        fail();
+        Game game = new Game();
+        game.setGame_id(32);
+        game.setTitle("asgasgsd");
+        game.setDescription("ajbjfnadsjknsdalgnasdg");
+        game.setRating(2.2);
+        game.setRelease_date(new Date(2018, Calendar.APRIL, 14));
+
+        gameDao.updateGame(game);
     }
 
     @Test
