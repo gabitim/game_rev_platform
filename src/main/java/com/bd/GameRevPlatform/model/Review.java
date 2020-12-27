@@ -3,6 +3,7 @@ package com.bd.GameRevPlatform.model;
 /**
  * @author Timofti Gabriel
  */
+
 public class Review {
     private int review_id;
     private String title;
