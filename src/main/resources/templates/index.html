@@ -10,6 +10,7 @@
 <div align="center">
     <h1>Games</h1>
     <a href="/newGame"> Enter New Game</a>
+    <br/><br/>
     <table border="1" cellpadding="10">
         <thead >
             <tr>
@@ -28,6 +29,11 @@
                 <td th:text="${game.release_date_string}">Release</td>
                 <td th:text="${game.rating}">Rating</td>
                 <td th:text="${game.genre}">Genre</td>
+
+                <!-- action column -->
+                <td>
+                    <a th:href="@{'/edit/' + ${game.game_id}}">Edit</a>
+                </td>
 
             </tr>
         </tbody>

@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.text.ParseException;
 import java.util.List;
@@ -52,6 +54,18 @@ public class AppController {
         gameService.saveGame(game);
 
         return "redirect:/";
+    }
+
+    @RequestMapping("/edit/{game_id}")
+    public ModelAndView viewEditGamePage(@PathVariable(name = "game_id")int game_id ) {
+        ModelAndView modelAndView = new ModelAndView("edit_game_form");
+        FrontPageGame frontPageGame = gameService.getGameFrontPage(game_id);
+        List<Genre> genres = genreService.getAllGenres();
+
+        modelAndView.addObject("game", frontPageGame);
+        modelAndView.addObject("genres", genres);
+
+        return modelAndView;
     }
 
 }

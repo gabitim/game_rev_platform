@@ -47,7 +47,7 @@ public class GameService {
         //add genre for display
         for (Game game: games){
             FrontPageGame frontPageGame = new FrontPageGame();
-
+            frontPageGame.setGame_id(game.getGame_id());
             frontPageGame.setTitle(game.getTitle());
             frontPageGame.setDescription(game.getDescription());
             frontPageGame.setRelease_date_string(game.getRelease_date());
@@ -65,5 +65,19 @@ public class GameService {
     public void saveGame(FrontPageGame frontPageGame){
         gameDao.insertGame(frontPageGame);
         genreGameService.saveGenreGame(frontPageGame.getGame_id(), frontPageGame.getGenre());
+    }
+
+    public FrontPageGame getGameFrontPage(int game_id){
+        Game game =  gameDao.getGame(game_id);
+
+        FrontPageGame frontPageGame = new FrontPageGame();
+        frontPageGame.setGame_id(game.getGame_id());
+        frontPageGame.setTitle(game.getTitle());
+        frontPageGame.setDescription(game.getDescription());
+        frontPageGame.setRelease_date_string(game.getRelease_date());
+        frontPageGame.setRating(game.getRating());
+        frontPageGame.setGenre(genreService.getGenreDescription(genreGameService.getGenreId(game.getGame_id())));
+
+        return frontPageGame;
     }
 }
