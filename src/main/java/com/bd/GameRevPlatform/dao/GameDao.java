@@ -53,7 +53,10 @@ public class GameDao {
     }
 
     public Game getGame(int game_id) {
-        return null;
+        String sql = "SELECT * FROM game WHERE game_id = ?";
+        Object[] args = {game_id};
+
+        return jdbcTemplate.queryForObject(sql, args, BeanPropertyRowMapper.newInstance(Game.class));
     }
 
     public void updateGame(Game game) {
