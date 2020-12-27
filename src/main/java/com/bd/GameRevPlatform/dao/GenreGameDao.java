@@ -44,4 +44,9 @@ public class GenreGameDao {
 
         jdbcTemplate.update(insertSql, args, types);
     }
+
+    public void deleteGenreGame(int game_id) {
+        String sql = "DELETE from GenreGame WHERE game_id = ?";
+        jdbcTemplate.update(sql, game_id);
+    }
 }

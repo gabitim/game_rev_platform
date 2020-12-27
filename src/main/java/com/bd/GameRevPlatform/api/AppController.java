@@ -68,4 +68,11 @@ public class AppController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/updateGame", method = RequestMethod.POST)
+    public String updateGame(@ModelAttribute("game") FrontPageGame game) {
+        gameService.updateGame(game);
+
+        return "redirect:/";
+    }
+
 }

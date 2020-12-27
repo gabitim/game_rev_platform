@@ -43,4 +43,9 @@ public class GenreGameService {
             genreGameDao.insertGenreGame(newGenreGame);
         }
     }
+
+    public void updateGenreGame(int game_id, String genres) {
+        genreGameDao.deleteGenreGame(game_id);
+        this.saveGenreGame(game_id, genres);
+    }
 }

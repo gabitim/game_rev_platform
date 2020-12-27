@@ -80,4 +80,9 @@ public class GameService {
 
         return frontPageGame;
     }
+
+    public void updateGame(FrontPageGame frontPageGame){
+        gameDao.updateGame(frontPageGame);
+        genreGameService.updateGenreGame(frontPageGame.getGame_id(), frontPageGame.getGenre());
+    }
 }
