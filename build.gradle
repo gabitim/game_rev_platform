@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.bd'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.4-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
@@ -18,6 +18,13 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+// for making jar executable
+jar {
+	manifest {
+		attributes 'Main-Class': 'com.bd.GameRevPlatform.GameRevPlatformApplication'
+	}
 }
 
 test {
