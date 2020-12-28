@@ -27,4 +27,10 @@ public class ReviewService {
     public void deleteReview(int game_id){
         reviewDao.deleteReview(game_id);
     }
+
+    public void saveReview(Review review){
+        // until we implement User feature all reviews have dummy user_id = 1
+        review.setUser_id(1);
+        reviewDao.insertReview(review);
+    }
 }

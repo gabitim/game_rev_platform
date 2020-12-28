@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www..thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>New Review </title>
+</head>
+
+
+<body>
+<div align="center">
+    <h1>Enter New Review</h1>
+    <br/>
+
+    <form action="#" th:action="@{/saveReview}" th:object="${review}" method="post">
+        <table border="1" cellpadding="10">
+            <tr>
+                <td>Title:</td>
+                <td><input type="text" th:field="*{title}" required></td>
+            </tr>
+            <tr>
+                <td>Content:</td>
+                <td><input type="text" th:field="*{text_field}" required></td>
+            </tr>
+            <tr>
+                <td>Game Id:</td>
+                <td><input type="text" th:field="*{game_id}" readonly></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><button type="submit">Save</button></td>
+            </tr>
+
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

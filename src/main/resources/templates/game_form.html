@@ -25,13 +25,13 @@
     <h1 th:object="${game}" >
      <p th:utext="*{title}">
     </h1>
-    <a href="/newGame"> Add new Review</a>
+    <a th:href="@{'/game/' + ${game.game_id} + '/newReview'}"> Add new Review</a>
     <br/><br/>
     <table id="myTable"  border="1" cellpadding="10" >
         <tr>
             <th>No</th>
             <th>Title</th>
-            <th>Field</th>
+            <th>Content</th>
             <th>Author</th>
             <th>Actions</th>
         </tr>

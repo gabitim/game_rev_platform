@@ -1,0 +1,2 @@
+-extract game id after insert. ouuuiii
+-not hardcoding genres. ouuuuiii

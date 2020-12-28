@@ -37,12 +37,8 @@ out/
 .vscode/
 
 #files
-commit_convention.txt
-funny.txt
-
-
-
 
 
 #silviu
-application.properties
+src/main/resources/application.properties
+Log_in_forms
