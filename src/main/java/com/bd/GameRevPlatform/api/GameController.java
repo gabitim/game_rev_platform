@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.ParseException;
 import java.util.List;
@@ -21,7 +20,7 @@ import java.util.List;
  */
 
 @Controller
-public class AppController {
+public class GameController {
 
     @Autowired
     private GameService gameService;
@@ -95,26 +94,6 @@ public class AppController {
         modelAndView.addObject("game", frontPageGame);
 
         return modelAndView;
-    }
-
-    @RequestMapping("/game/{game_id}/newReview")
-    public ModelAndView viewEnterReviewPage(@PathVariable(name = "game_id")int game_id) {
-        ModelAndView modelAndView = new ModelAndView("new_review_form");
-        Review review = new Review();
-        review.setGame_id(game_id);
-
-        modelAndView.addObject("review", review);
-
-        return modelAndView;
-    }
-
-
-    @RequestMapping(value = "/saveReview", method = RequestMethod.POST)
-    public String saveReview(@ModelAttribute("review") Review review, RedirectAttributes redirectAttributes) {
-        reviewService.saveReview(review);
-
-        redirectAttributes.addAttribute("game_id", review.getGame_id());
-        return "redirect:/game/{game_id}";
     }
 
 }
