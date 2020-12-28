@@ -1,8 +1,11 @@
 package com.bd.GameRevPlatform.service;
 
 import com.bd.GameRevPlatform.dao.ReviewDao;
+import com.bd.GameRevPlatform.model.Review;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author Timofti Gabriel
@@ -17,6 +20,9 @@ public class ReviewService {
         this.reviewDao = reviewDao;
     }
 
+    public List<Review> getReviewsByGameId(int game_id) {
+        return reviewDao.getReviewsByGameId(game_id);
+    }
 
     public void deleteReview(int game_id){
         reviewDao.deleteReview(game_id);

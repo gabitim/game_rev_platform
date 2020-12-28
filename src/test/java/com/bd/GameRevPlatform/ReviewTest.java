@@ -40,10 +40,18 @@ public class ReviewTest {
     }
 
     @Test
-    void testGetGame() {
+    void testGetReview() {
         int review_id = 2;
         Review review = reviewDao.getReview(review_id);
 
         assertNotNull(review);
+    }
+
+    @Test
+    void testGetReviewByGameId() {
+        int game_id = 3;
+        List<Review> reviews = reviewDao.getReviewsByGameId(game_id);
+
+        assertFalse(reviews.isEmpty());
     }
 }

@@ -25,11 +25,11 @@
 
         <tbody>
             <tr th:each="game : ${games}">
-                <td th:text="${game.title}">Title</td>
-                <td th:text="${game.description}">Description</td>
-                <td th:text="${game.release_date_string}">Release</td>
-                <td th:text="${game.rating}">Rating</td>
-                <td th:text="${game.genre}">Genre</td>
+                <td > <a th:text="${game.title}" th:href="@{'/game/' + ${game.game_id}}"> </a> </td>
+                <td th:text="${game.description}"></td>
+                <td th:text="${game.release_date_string}"></td>
+                <td th:text="${game.rating}"></td>
+                <td th:text="${game.genre}"></td>
 
                 <!-- action column -->
                 <td>

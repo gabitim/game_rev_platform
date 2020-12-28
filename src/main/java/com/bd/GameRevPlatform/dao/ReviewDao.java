@@ -32,6 +32,13 @@ public class ReviewDao {
         return jdbcTemplate.queryForObject(sql, args, BeanPropertyRowMapper.newInstance(Review.class));
     }
 
+    public List<Review> getReviewsByGameId(int game_id){
+        String sql = "SELECT * FROM Review WHERE game_id = ?";
+        Object[] args = {game_id};
+
+        return jdbcTemplate.query(sql, args, BeanPropertyRowMapper.newInstance(Review.class));
+    }
+
     public void deleteReview(int game_id) {
         String sql = "DELETE from Review WHERE game_id = ?";
         jdbcTemplate.update(sql, game_id);

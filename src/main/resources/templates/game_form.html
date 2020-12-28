@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www..thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews</title>
+
+    <script type="text/javascript">
+        function displayRowNumber()
+        {
+            var table = document.getElementById("myTable"),
+            rows = table.getElementsByTagName('tr'),
+            text = 'textContent' in document ? 'textContent' : 'innerText';
+
+            for (var i = 1, len = rows.length; i < len; i++) {
+            rows[i].children[0][text] = i + rows[i].children[0][text];
+            }
+        }
+        </script>
+
+</head>
+<body onload="displayRowNumber()">
+<div align="center">
+    <h1 th:object="${game}" >
+     <p th:utext="*{title}">
+    </h1>
+    <a href="/newGame"> Add new Review</a>
+    <br/><br/>
+    <table id="myTable"  border="1" cellpadding="10" >
+        <tr>
+            <th>No</th>
+            <th>Title</th>
+            <th>Field</th>
+            <th>Author</th>
+            <th>Actions</th>
+        </tr>
+
+        <tbody>
+        <tr th:each="review : ${reviews}">
+            <td> </td>
+            <td th:text="${review.title}"></td>
+            <td th:text="${review.text_field}"></td>
+
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

@@ -1,8 +1,10 @@
 package com.bd.GameRevPlatform.api;
 
 import com.bd.GameRevPlatform.model.Genre;
+import com.bd.GameRevPlatform.model.Review;
 import com.bd.GameRevPlatform.service.GameService;
 import com.bd.GameRevPlatform.service.GenreService;
+import com.bd.GameRevPlatform.service.ReviewService;
 import com.bd.GameRevPlatform.service.game.FrontPageGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,9 @@ public class AppController {
 
     @Autowired
     private GenreService genreService;
+
+    @Autowired
+    private ReviewService reviewService;
 
     @RequestMapping("/")
     public String viewHomePage(Model model) throws ParseException {
@@ -80,6 +85,18 @@ public class AppController {
         gameService.deleteGame(game_id);
 
         return "redirect:/";
+    }
+
+    @RequestMapping("/game/{game_id}")
+    public ModelAndView viewGame(@PathVariable(name = "game_id")int game_id) {
+        ModelAndView modelAndView = new ModelAndView("game_form");
+        List<Review> reviews = reviewService.getReviewsByGameId(game_id);
+        FrontPageGame frontPageGame = gameService.getGameFrontPage(game_id);
+
+        modelAndView.addObject("reviews", reviews);
+        modelAndView.addObject("game", frontPageGame);
+
+        return modelAndView;
     }
 
 }

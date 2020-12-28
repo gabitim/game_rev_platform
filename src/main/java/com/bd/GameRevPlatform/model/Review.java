@@ -11,14 +11,6 @@ public class Review {
     private int game_id;
     private int user_id;
 
-    public Review(int review_id, String title, String text_field, int game_id, int user_id) {
-        this.review_id = review_id;
-        this.title = title;
-        this.text_field = text_field;
-        this.game_id = game_id;
-        this.user_id = user_id;
-    }
-
     public int getReview_id() {
         return review_id;
     }
