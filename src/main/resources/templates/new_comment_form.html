@@ -20,8 +20,8 @@
     </div>
     <div class="item2" align="center">
         <h1> WELCOME TO GAME REVIEW PLATFORM </h1>
-        <h2 th:object="${game}"><p th:utext="*{title}"> </h2>
-        <h3 th:object="${review}" >Enter New Comment For: <span th:utext="*{title}"/> </h3>
+        <h2 th:object="${game}"> Game: <span th:utext="*{title}"/> </h2>
+        <h3 th:object="${review}" >Enter New Comment For Review: <span th:utext="*{title}"/> </h3>
         <br/>
         <form action="#" th:action="@{/saveComment}" th:object="${comment}" method="post">
             <input type="text" th:field="*{game_id}" hidden>
