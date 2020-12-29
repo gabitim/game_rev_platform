@@ -5,45 +5,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Game Review Platform</title>
+
+    <!-- for align logo with tables-->
+    <link rel="stylesheet" type="text/css" href="/css/alignment.css"/>
 </head>
 <body>
-<div align="center">
-    <h1>Games</h1>
-    <a href="/newGame"> Enter New Game</a>
-    <br/><br/>
-    <table border="1" cellpadding="10">
-        <thead >
-            <tr>
-                <th>Title </th>
-                <th>Description</th>
-                <th>Release</th>
-                <th>Rating</th>
-                <th>Genre</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
 
-        <tbody>
-            <tr th:each="game : ${games}">
-                <td > <a th:text="${game.title}" th:href="@{'/game/' + ${game.game_id}}"> </a> </td>
-                <td th:text="${game.description}"></td>
-                <td th:text="${game.release_date_string}"></td>
-                <td th:text="${game.rating}"></td>
-                <td th:text="${game.genre}"></td>
+<div class="page" >
+    <div class="item">
+        <a th:href="@{'/'}">
+            <img   th:src="@{images/Logo.jpg}"  alt="logo" width="150px" height="300px">
+        </a>
+    </div>
 
-                <!-- action column -->
-                <td>
-                    <a th:href="@{'/edit/' + ${game.game_id}}">Edit</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a th:href="@{'/delete/' + ${game.game_id}}">Delete</a>
-                </td>
+    <div class="item" align="center">
+        <h1> WELCOME TO GAME REVIEW PLATFORM </h1>
+        <h2>Games</h2>
+        <a href="/newGame"> Enter New Game</a>
+        <br/><br/>
+        <table border="1" cellpadding="10">
+            <thead >
+                <tr>
+                    <th>Title </th>
+                    <th>Description</th>
+                    <th>Release</th>
+                    <th>Rating</th>
+                    <th>Genre</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
 
-            </tr>
-        </tbody>
+            <tbody>
+                <tr th:each="game : ${games}">
+                    <td > <a th:text="${game.title}" th:href="@{'/game/' + ${game.game_id}}"> </a> </td>
+                    <td th:text="${game.description}"></td>
+                    <td th:text="${game.release_date_string}"></td>
+                    <td th:text="${game.rating}"></td>
+                    <td th:text="${game.genre}"></td>
 
-    </table>
+                    <!-- action column -->
+                    <td>
+                        <a th:href="@{'/edit/' + ${game.game_id}}">Edit</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a th:href="@{'/delete/' + ${game.game_id}}">Delete</a>
+                    </td>
 
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
 </div>
+
+
 
 </body>
 </html>

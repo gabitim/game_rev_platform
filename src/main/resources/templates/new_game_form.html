@@ -13,6 +13,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.css">
 
+    <!-- for align logo with tables-->
+    <link rel="stylesheet" type="text/css" href="/css/alignment.css"/>
+
     <!-- get current date for max date validation -->
     <script>
         function getCurrentDate() {
@@ -41,47 +44,55 @@ $(function() {
 </script>
 
 <body>
-<div align="center">
-    <h1>Enter New Game</h1>
-    <br/>
+<div class="page" >
+    <div class="item">
+        <a th:href="@{'/'}">
+            <img   th:src="@{images/Logo.jpg}"  alt="logo" width="150px" height="300px">
+        </a>
+    </div>
 
-    <form action="#" th:action="@{/saveGame}" th:object="${game}" method="post">
-        <table border="1" cellpadding="10">
-            <tr>
-                <td>Title:</td>
-                <td><input type="text" th:field="*{title}" required></td>
-            </tr>
-            <tr>
-                <td>Description:</td>
-                <td><input type="text" th:field="*{description}" required></td>
-            </tr>
-            <tr>
-                <td>Release Date:</td>
-                <td><input id="release_date" type="date" th:field="*{release_date}" required onfocus="getCurrentDate(this)"></td>
-            </tr>
+    <div class="item2" align="center">
+        <h1>Enter New Game</h1>
+        <br/>
 
-           <tr>
-               <td>Rating:</td>
-               <td><input type="number" th:field="*{rating}" step="0.1" required min="1" max="5" value=""></td>
-           </tr>
+        <form action="#" th:action="@{/saveGame}" th:object="${game}" method="post">
+            <table border="1" cellpadding="10">
+                <tr>
+                    <td>Title:</td>
+                    <td><input type="text" th:field="*{title}" required></td>
+                </tr>
+                <tr>
+                    <td>Description:</td>
+                    <td><input type="text" th:field="*{description}" required></td>
+                </tr>
+                <tr>
+                    <td>Release Date:</td>
+                    <td><input id="release_date" type="date" th:field="*{release_date}" required onfocus="getCurrentDate(this)"></td>
+                </tr>
 
-           <tr>
-               <td>Genre:</td>
-               <td>
-                   <select class="select-genre" th:field="*{genre}" multiple="true" style="width:200px;" required>
+               <tr>
+                   <td>Rating:</td>
+                   <td><input type="number" th:field="*{rating}" step="0.1" required min="1" max="5" value=""></td>
+               </tr>
 
-                       <option th:each="genre : ${genres}" th:value="${genre.description}" th:text="${genre.description}">
-                       </option>
+               <tr>
+                   <td>Genre:</td>
+                   <td>
+                       <select class="select-genre" th:field="*{genre}" multiple="true" style="width:200px;" required>
 
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2"><button type="submit">Save</button></td>
-            </tr>
+                           <option th:each="genre : ${genres}" th:value="${genre.description}" th:text="${genre.description}">
+                           </option>
 
-        </table>
-    </form>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button></td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
 </div>
 
 </body>

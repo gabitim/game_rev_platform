@@ -5,11 +5,22 @@
 <head>
     <meta charset="UTF-8">
     <title>New Review </title>
+
+    <!-- for align logo with tables-->
+    <link rel="stylesheet" type="text/css" href="/css/alignment.css"/>
+
 </head>
 
-
 <body>
-<div align="center">
+
+<div class="page">
+    <div class="item">
+        <a th:href="@{'/'}">
+            <img   th:src="@{../../images/Logo.jpg}"  alt="logo" width="150px" height="300px">
+        </a>
+    </div>
+
+<div class="item2" align="center">
     <h1>Enter New Review</h1>
     <br/>
 
@@ -34,6 +45,7 @@
 
         </table>
     </form>
+</div>
 </div>
 
 </body>

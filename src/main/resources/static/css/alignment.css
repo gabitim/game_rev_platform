@@ -1,0 +1,11 @@
+.page {
+  display: flex; /* equal height of the children */
+}
+
+.item {
+  padding-left: 2em;
+}
+
+.item2 {
+  margin: auto;
+}

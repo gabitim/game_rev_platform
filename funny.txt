@@ -1,2 +1,3 @@
--extract game id after insert. ouuuiii
--not hardcoding genres. ouuuuiii
+-extract game id after insert. ouuuiii --> KeyHolder keyHolder = new GeneratedKeyHolder();
+-not hardcoding genres. ouuuuiii --> <option th:each="genre : ${genres}" th:value="${genre.description}" th:text="${genre.description}">
+-image not showing in edit, review , and add review; why are we still here? just to suffer? --> th:src="@{../images/Logo.jpg}"

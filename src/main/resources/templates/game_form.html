@@ -6,6 +6,9 @@
     <meta charset="UTF-8">
     <title>Reviews</title>
 
+    <!-- for align logo with tables-->
+    <link rel="stylesheet" type="text/css" href="/css/alignment.css"/>
+
     <script type="text/javascript">
         function displayRowNumber()
         {
@@ -21,32 +24,41 @@
 
 </head>
 <body onload="displayRowNumber()">
-<div align="center">
-    <h1 th:object="${game}" >
-     <p th:utext="*{title}">
-    </h1>
-    <a th:href="@{'/game/' + ${game.game_id} + '/newReview'}"> Add new Review</a>
-    <br/><br/>
-    <table id="myTable"  border="1" cellpadding="10" >
-        <tr>
-            <th>No</th>
-            <th>Title</th>
-            <th>Content</th>
-            <th>Author</th>
-            <th>Actions</th>
-        </tr>
 
-        <tbody>
-        <tr th:each="review : ${reviews}">
-            <td> </td>
-            <td th:text="${review.title}"></td>
-            <td th:text="${review.text_field}"></td>
+<div class="page">
+    <div class="item">
+        <a th:href="@{'/'}">
+            <img   th:src="@{../images/Logo.jpg}"  alt="logo" width="150px" height="300px">
+        </a>
+    </div>
 
-        </tr>
-        </tbody>
+    <div class="item2" align="center">
+        <h1 th:object="${game}" >
+         <p th:utext="*{title}">
+        </h1>
+        <a th:href="@{'/game/' + ${game.game_id} + '/newReview'}"> Add new Review</a>
+        <br/><br/>
+        <table id="myTable"  border="1" cellpadding="10" >
+            <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Author</th>
+                <th>Actions</th>
+            </tr>
 
-    </table>
+            <tbody>
+            <tr th:each="review : ${reviews}">
+                <td> </td>
+                <td th:text="${review.title}"></td>
+                <td th:text="${review.text_field}"></td>
 
+            </tr>
+            </tbody>
+
+        </table>
+
+    </div>
 </div>
 
 </body>
