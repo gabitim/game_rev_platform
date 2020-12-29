@@ -121,4 +121,16 @@ public class ReviewController {
         redirectAttributes.addAttribute("parent_id", comment.getParent_id());
         return "redirect:/game/{game_id}/review/{parent_id}";
     }
+
+    @RequestMapping("game/{game_id}/review/{review_id}/delete/{comment_id}")
+    public String deleteComment(@PathVariable(name="game_id")int game_id,
+                               @PathVariable(name = "review_id")int review_id,
+                               @PathVariable(name = "comment_id")int comment_id,
+                               RedirectAttributes redirectAttributes) {
+        reviewService.deleteComment(comment_id);
+
+        redirectAttributes.addAttribute("game_id", game_id);
+        redirectAttributes.addAttribute("review_id", review_id);
+        return "redirect:/game/{game_id}/review/{review_id}";
+    }
 }

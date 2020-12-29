@@ -45,6 +45,10 @@ public class ReviewService {
         reviewDao.deleteReview(review_id);
     }
 
+    public void deleteComment(int comment_id) {
+        reviewDao.deleteReview(comment_id);
+    }
+
     public void saveReview(Review review){
         // until we implement User feature all reviews have dummy user_id = 1
         review.setUser_id(1);
