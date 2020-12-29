@@ -52,7 +52,7 @@
                 <td> </td>
                 <!-- action column -->
                 <td>
-                    <a th:href="@{'/game/' + ${game.game_id} + '/edit/' + ${comment.review_id}}">Edit</a>
+                    <a th:href="@{'/game/' + ${game.game_id} + '/review/' + ${review.review_id} + '/edit/' + ${comment.review_id}}">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <a th:href="@{'/game/' + ${game.game_id} + '/review/' + ${review.review_id}} + '/delete/' + ${comment.review_id}">Delete</a>
                 </td>

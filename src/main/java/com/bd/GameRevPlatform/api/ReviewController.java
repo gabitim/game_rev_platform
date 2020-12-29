@@ -122,6 +122,29 @@ public class ReviewController {
         return "redirect:/game/{game_id}/review/{parent_id}";
     }
 
+    @RequestMapping("game/{game_id}/review/{review_id}/edit/{comment_id}")
+    public ModelAndView viewEditCommentPage(@PathVariable(name = "comment_id")int comment_id) {
+        ModelAndView modelAndView = new ModelAndView("edit_comment_form");
+        Review comment = reviewService.getReview(comment_id);
+        FrontPageGame game = gameService.getGameFrontPage(comment.getGame_id()); //for displaying game title
+        Review review = reviewService.getReview(comment.getParent_id()); // for displaying review title
+
+        modelAndView.addObject("comment", comment);
+        modelAndView.addObject("review", review);
+        modelAndView.addObject("game", game);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/updateComment", method = RequestMethod.POST)
+    public String updateComment(@ModelAttribute("comment") Review comment, RedirectAttributes redirectAttributes) {
+        reviewService.updateReview(comment);
+
+        redirectAttributes.addAttribute("game_id", comment.getGame_id());
+        redirectAttributes.addAttribute("parent_id", comment.getParent_id());
+        return "redirect:/game/{game_id}/review/{parent_id}";
+    }
+
     @RequestMapping("game/{game_id}/review/{review_id}/delete/{comment_id}")
     public String deleteComment(@PathVariable(name="game_id")int game_id,
                                @PathVariable(name = "review_id")int review_id,
