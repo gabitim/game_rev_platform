@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www..thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>New Review </title>
+
+    <!-- for align logo with tables-->
+    <link rel="stylesheet" type="text/css" href="/css/alignment.css"/>
+
+</head>
+
+<body>
+<div class="page">
+    <div class="item">
+        <a th:href="@{'/'}">
+            <img   th:src="@{../../../../images/Logo.jpg}"  alt="logo" width="150px" height="300px">
+        </a>
+    </div>
+    <div class="item2" align="center">
+        <h1> WELCOME TO GAME REVIEW PLATFORM </h1>
+        <h2 th:object="${game}"><p th:utext="*{title}"> </h2>
+        <h3 th:object="${review}" >Enter New Comment For: <span th:utext="*{title}"/> </h3>
+        <br/>
+        <form action="#" th:action="@{/saveComment}" th:object="${comment}" method="post">
+            <input type="text" th:field="*{game_id}" hidden>
+            <input type="text" th:field="*{parent_id}" hidden>
+            <table border="1" cellpadding="10">
+                <tr>
+                    <td>Comment:</td>
+                    <td><input type="text" th:field="*{text_field}" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button></td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

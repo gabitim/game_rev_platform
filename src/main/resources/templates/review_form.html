@@ -34,7 +34,7 @@
         <h1> WELCOME TO GAME REVIEW PLATFORM </h1>
         <h2 th:object="${game}"><p th:utext="*{title}"> </h2>
         <h3 th:object="${review}"><p th:utext="*{title}"> </h3>
-        <a th:href="@{'/game/' + ${game.game_id} + '/newReview'}"> Add new Comment</a>
+        <a th:href="@{'/game/' + ${game.game_id} + '/review/' + ${review.review_id} + '/newComment' }"> Add new Comment</a>
         <br/><br/>
         <table id="myTable"  border="1" cellpadding="10" >
             <tr>

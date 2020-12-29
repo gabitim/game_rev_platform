@@ -46,6 +46,12 @@ public class ReviewService {
         reviewDao.insertReview(review);
     }
 
+    public void saveComment(Review review) {
+        // until we implement User feature all reviews have dummy user_id = 1
+        review.setUser_id(1);
+        reviewDao.insertComment(review);
+    }
+
     public void updateReview(Review review) {
         reviewDao.updateReview(review);
     }

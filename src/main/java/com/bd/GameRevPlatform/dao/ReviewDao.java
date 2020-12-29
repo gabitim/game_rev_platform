@@ -78,6 +78,28 @@ public class ReviewDao {
         review.setReview_id(review_id);
     }
 
+    public void insertComment(Review review) {
+        String insertSql = "INSERT INTO Review (title, text_field, game_id, user_id, parent_id) " +
+                "VALUES (?, ?, ?, ?, ?)";
+        int review_id = 0;
+
+        // use KeyHolder and PreparedStatement to get the autoincrement id from oracle db
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(conn -> {
+            PreparedStatement ps = conn.prepareStatement(insertSql, new String[] { "review_id" });
+            ps.setString(1, review.getTitle());
+            ps.setString(2, review.getText_field());
+            ps.setInt(3, review.getGame_id());
+            ps.setInt(4, review.getUser_id());
+            ps.setInt(5, review.getParent_id());
+            return ps;
+        }, keyHolder);
+        review_id = keyHolder.getKey().intValue();
+
+        review.setReview_id(review_id);
+    }
+
     public void updateReview(Review review) {
         String sql = "UPDATE Review SET title=:title, text_field=:text_field WHERE review_id=:review_id";
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(review);
