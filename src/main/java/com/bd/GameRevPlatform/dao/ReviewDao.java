@@ -113,6 +113,11 @@ public class ReviewDao {
         jdbcTemplate.update(sql, game_id);
     }
 
+    public void deleteCommentsByParentId(int parent_id) {
+        String sql = "DELETE from Review WHERE parent_id = ?";
+        jdbcTemplate.update(sql, parent_id);
+    }
+
     public void deleteReview(int review_id) {
         String sql = "DELETE from Review WHERE review_id = ?";
         jdbcTemplate.update(sql, review_id);

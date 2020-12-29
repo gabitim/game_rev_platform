@@ -36,7 +36,12 @@ public class ReviewService {
         reviewDao.deleteReviewsByGameId(game_id);
     }
 
+    public void deleteCommentsByParentId(int parent_id) {
+        reviewDao.deleteCommentsByParentId(parent_id);
+    }
+
     public void deleteReview(int review_id) {
+        this.deleteCommentsByParentId(review_id);
         reviewDao.deleteReview(review_id);
     }
 
