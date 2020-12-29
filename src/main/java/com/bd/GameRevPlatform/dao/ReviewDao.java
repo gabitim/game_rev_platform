@@ -58,8 +58,10 @@ public class ReviewDao {
     }
 
     public void insertReview(Review review) {
-        String insertSql = "INSERT INTO Review (title, text_field, game_id, user_id) " +
-                "VALUES (?, ?, ?, ?)";
+        System.out.println(review.getPosted_date());
+
+        String insertSql = "INSERT INTO Review (title, text_field, game_id, user_id, parent_id, posted_date) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
         int review_id = 0;
 
         // use KeyHolder and PreparedStatement to get the autoincrement id from oracle db
@@ -71,6 +73,8 @@ public class ReviewDao {
             ps.setString(2, review.getText_field());
             ps.setInt(3, review.getGame_id());
             ps.setInt(4, review.getUser_id());
+            ps.setNull(5, java.sql.Types.INTEGER);
+            ps.setDate(6, new java.sql.Date(review.getPosted_date().getTime()));
             return ps;
         }, keyHolder);
         review_id = keyHolder.getKey().intValue();
@@ -79,8 +83,9 @@ public class ReviewDao {
     }
 
     public void insertComment(Review review) {
-        String insertSql = "INSERT INTO Review (title, text_field, game_id, user_id, parent_id) " +
-                "VALUES (?, ?, ?, ?, ?)";
+        System.out.println(review.getPosted_date());
+        String insertSql = "INSERT INTO Review (title, text_field, game_id, user_id, parent_id, posted_date) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
         int review_id = 0;
 
         // use KeyHolder and PreparedStatement to get the autoincrement id from oracle db
@@ -93,6 +98,7 @@ public class ReviewDao {
             ps.setInt(3, review.getGame_id());
             ps.setInt(4, review.getUser_id());
             ps.setInt(5, review.getParent_id());
+            ps.setDate(6, new java.sql.Date(review.getPosted_date().getTime()));
             return ps;
         }, keyHolder);
         review_id = keyHolder.getKey().intValue();
@@ -101,7 +107,8 @@ public class ReviewDao {
     }
 
     public void updateReview(Review review) {
-        String sql = "UPDATE Review SET title=:title, text_field=:text_field WHERE review_id=:review_id";
+        String sql = "UPDATE Review SET title=:title, text_field=:text_field, " +
+                "posted_date=:posted_date WHERE review_id=:review_id";
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(review);
         NamedParameterJdbcTemplate temp = new NamedParameterJdbcTemplate(jdbcTemplate);
 

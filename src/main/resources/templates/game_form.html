@@ -43,6 +43,7 @@
                 <th>No</th>
                 <th>Title</th>
                 <th>Content</th>
+                <th>Posted On</th>
                 <th>Author</th>
                 <th>Actions</th>
             </tr>
@@ -52,6 +53,7 @@
                 <td> </td>
                 <td> <a th:text="${review.title}" th:href="@{'/game/' + ${game.game_id} + '/review/' + ${review.review_id}}" > </a> </td>
                 <td th:text="${review.text_field}"></td>
+                <td th:text="${review.posted_date}"></td>
 
                 <td> </td>
                 <!-- action column -->

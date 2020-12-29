@@ -1,5 +1,7 @@
 package com.bd.GameRevPlatform.model;
 
+import java.util.Date;
+
 /**
  * @author Timofti Gabriel
  */
@@ -11,6 +13,7 @@ public class Review {
     private int game_id;
     private int user_id;
     private Integer parent_id;
+    private Date posted_date;
 
     public int getReview_id() {
         return review_id;
@@ -58,6 +61,14 @@ public class Review {
 
     public void setParent_id(Integer parent_id) {
         this.parent_id = parent_id;
+    }
+
+    public Date getPosted_date() {
+        return posted_date;
+    }
+
+    public void setPosted_date(Date posted_date) {
+        this.posted_date = posted_date;
     }
 
     @Override

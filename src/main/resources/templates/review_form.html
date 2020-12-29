@@ -43,6 +43,7 @@
             <tr>
                 <th>No</th>
                 <th>Comment</th>
+                <th>Posted On</th>
                 <th>Author</th>
                 <th>Actions</th>
             </tr>
@@ -51,7 +52,7 @@
             <tr th:each="comment : ${comments}">
                 <td> </td>
                 <td th:text="${comment.text_field}"></td>
-
+                <td th:text="${comment.posted_date}"></td>
                 <td> </td>
                 <!-- action column -->
                 <td>
