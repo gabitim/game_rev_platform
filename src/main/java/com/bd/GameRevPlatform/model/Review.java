@@ -10,6 +10,7 @@ public class Review {
     private String text_field;
     private int game_id;
     private int user_id;
+    private Integer parent_id;
 
     public int getReview_id() {
         return review_id;
@@ -49,6 +50,14 @@ public class Review {
 
     public void setUser_id(int user_id) {
         this.user_id = user_id;
+    }
+
+    public Integer getParent_id() {
+        return parent_id;
+    }
+
+    public void setParent_id(Integer parent_id) {
+        this.parent_id = parent_id;
     }
 
     @Override

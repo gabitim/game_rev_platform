@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 /**
  * @author Timofti Gabriel
  */
@@ -77,5 +79,20 @@ public class ReviewController {
 
         redirectAttributes.addAttribute("game_id", game_id);
         return "redirect:/game/{game_id}";
+    }
+
+    @RequestMapping("game/{game_id}/review/{parent_id}")
+    public ModelAndView viewReview(@PathVariable(name="game_id")int game_id,
+                                   @PathVariable(name="parent_id")int parent_id){
+        ModelAndView modelAndView = new ModelAndView("review_form");
+        List<Review> comments = reviewService.getComments(parent_id);
+        FrontPageGame frontPageGame = gameService.getGameFrontPage(game_id); //for displaying game title
+        Review review = reviewService.getReview(parent_id); // for displaying review title
+
+        modelAndView.addObject("comments", comments);
+        modelAndView.addObject("game", frontPageGame);
+        modelAndView.addObject("review", review);
+
+        return modelAndView;
     }
 }

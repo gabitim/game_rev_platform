@@ -28,6 +28,10 @@ public class ReviewService {
         return reviewDao.getReviewsByGameId(game_id);
     }
 
+    public List<Review> getComments(int parent_id){
+        return reviewDao.getCommentsByParentId(parent_id);
+    }
+
     public void deleteReviewsByGameId(int game_id){
         reviewDao.deleteReviewsByGameId(game_id);
     }

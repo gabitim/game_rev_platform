@@ -88,7 +88,7 @@ public class GameController {
     public ModelAndView viewGame(@PathVariable(name = "game_id")int game_id) {
         ModelAndView modelAndView = new ModelAndView("game_form");
         List<Review> reviews = reviewService.getReviewsByGameId(game_id);
-        FrontPageGame frontPageGame = gameService.getGameFrontPage(game_id);
+        FrontPageGame frontPageGame = gameService.getGameFrontPage(game_id); //for displaying game title
 
         modelAndView.addObject("reviews", reviews);
         modelAndView.addObject("game", frontPageGame);

@@ -25,6 +25,12 @@ public class ReviewDao {
     }
 
     public List<Review> getAllReviews() {
+        String sql = "SELECT * FROM Review WHERE parent_id IS NULL";
+
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Review.class));
+    }
+
+    public List<Review> getAllReviewsAndComments() {
         String sql = "SELECT * FROM Review";
 
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Review.class));
@@ -38,8 +44,15 @@ public class ReviewDao {
     }
 
     public List<Review> getReviewsByGameId(int game_id){
-        String sql = "SELECT * FROM Review WHERE game_id = ?";
+        String sql = "SELECT * FROM Review WHERE game_id = ? AND parent_id IS NULL";
         Object[] args = {game_id};
+
+        return jdbcTemplate.query(sql, args, BeanPropertyRowMapper.newInstance(Review.class));
+    }
+
+    public List<Review> getCommentsByParentId(int parent_id){
+        String sql = "SELECT * FROM Review WHERE parent_id = ?";
+        Object[] args = {parent_id};
 
         return jdbcTemplate.query(sql, args, BeanPropertyRowMapper.newInstance(Review.class));
     }
