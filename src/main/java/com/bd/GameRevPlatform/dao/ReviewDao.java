@@ -73,8 +73,13 @@ public class ReviewDao {
         temp.update(sql, param);
     }
 
-    public void deleteReview(int game_id) {
+    public void deleteReviewsByGameId(int game_id) {
         String sql = "DELETE from Review WHERE game_id = ?";
         jdbcTemplate.update(sql, game_id);
+    }
+
+    public void deleteReview(int review_id) {
+        String sql = "DELETE from Review WHERE review_id = ?";
+        jdbcTemplate.update(sql, review_id);
     }
 }

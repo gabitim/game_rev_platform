@@ -79,7 +79,7 @@ public class GameTest {
     void testDeleteGame() {
         int game_id = 32;
         genreGameDao.deleteGenreGame(game_id);
-        reviewDao.deleteReview(game_id);
+        reviewDao.deleteReviewsByGameId(game_id);
         gameSessionDao.deleteGameSession(game_id);
         gameDao.deleteGame(game_id);
     }

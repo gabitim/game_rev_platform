@@ -94,7 +94,7 @@ public class GameService {
 
     public void deleteGame(int game_id){
         gameSessionService.deleteGameSession(game_id);
-        reviewService.deleteReview(game_id);
+        reviewService.deleteReviewsByGameId(game_id);
         genreGameService.deleteGenreGame(game_id);
 
         gameDao.deleteGame(game_id);

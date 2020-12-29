@@ -28,8 +28,12 @@ public class ReviewService {
         return reviewDao.getReviewsByGameId(game_id);
     }
 
-    public void deleteReview(int game_id){
-        reviewDao.deleteReview(game_id);
+    public void deleteReviewsByGameId(int game_id){
+        reviewDao.deleteReviewsByGameId(game_id);
+    }
+
+    public void deleteReview(int review_id) {
+        reviewDao.deleteReview(review_id);
     }
 
     public void saveReview(Review review){

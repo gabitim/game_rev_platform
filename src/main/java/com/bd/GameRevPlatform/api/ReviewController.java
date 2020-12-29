@@ -1,6 +1,5 @@
 package com.bd.GameRevPlatform.api;
 
-import com.bd.GameRevPlatform.model.Game;
 import com.bd.GameRevPlatform.model.Review;
 import com.bd.GameRevPlatform.service.GameService;
 import com.bd.GameRevPlatform.service.ReviewService;
@@ -70,5 +69,13 @@ public class ReviewController {
         return "redirect:/game/{game_id}";
     }
 
+    @RequestMapping("game/{game_id}/delete/{review_id}")
+    public String deleteReview(@PathVariable(name="game_id")int game_id,
+                               @PathVariable(name = "review_id")int review_id,
+                               RedirectAttributes redirectAttributes) {
+        reviewService.deleteReview(review_id);
 
+        redirectAttributes.addAttribute("game_id", game_id);
+        return "redirect:/game/{game_id}";
+    }
 }
