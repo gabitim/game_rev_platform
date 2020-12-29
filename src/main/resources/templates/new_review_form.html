@@ -12,19 +12,18 @@
 </head>
 
 <body>
-
 <div class="page">
     <div class="item">
         <a th:href="@{'/'}">
             <img   th:src="@{../../images/Logo.jpg}"  alt="logo" width="150px" height="300px">
         </a>
     </div>
-
 <div class="item2" align="center">
-    <h1>Enter New Review</h1>
+    <h1> WELCOME TO GAME REVIEW PLATFORM </h1>
+    <h2 th:object="${game}" >Enter New Review For: <span th:utext="*{title}"/> </h2>
     <br/>
-
     <form action="#" th:action="@{/saveReview}" th:object="${review}" method="post">
+        <input type="text" th:field="*{game_id}" hidden>
         <table border="1" cellpadding="10">
             <tr>
                 <td>Title:</td>
@@ -34,11 +33,6 @@
                 <td>Content:</td>
                 <td><input type="text" th:field="*{text_field}" required></td>
             </tr>
-            <tr>
-                <td>Game Id:</td>
-                <td><input type="text" th:field="*{game_id}" readonly></td>
-            </tr>
-
             <tr>
                 <td colspan="2"><button type="submit">Save</button></td>
             </tr>

@@ -24,18 +24,15 @@
 
 </head>
 <body onload="displayRowNumber()">
-
 <div class="page">
     <div class="item">
         <a th:href="@{'/'}">
             <img   th:src="@{../images/Logo.jpg}"  alt="logo" width="150px" height="300px">
         </a>
     </div>
-
     <div class="item2" align="center">
-        <h1 th:object="${game}" >
-         <p th:utext="*{title}">
-        </h1>
+        <h1> WELCOME TO GAME REVIEW PLATFORM </h1>
+        <h2 th:object="${game}"><p th:utext="*{title}"> </h2>
         <a th:href="@{'/game/' + ${game.game_id} + '/newReview'}"> Add new Review</a>
         <br/><br/>
         <table id="myTable"  border="1" cellpadding="10" >

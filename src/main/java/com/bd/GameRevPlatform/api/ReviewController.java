@@ -1,7 +1,10 @@
 package com.bd.GameRevPlatform.api;
 
+import com.bd.GameRevPlatform.model.Game;
 import com.bd.GameRevPlatform.model.Review;
+import com.bd.GameRevPlatform.service.GameService;
 import com.bd.GameRevPlatform.service.ReviewService;
+import com.bd.GameRevPlatform.service.game.FrontPageGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,14 +24,19 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
+    @Autowired
+    private GameService gameService;
+
 
     @RequestMapping("/game/{game_id}/newReview")
     public ModelAndView viewEnterReviewPage(@PathVariable(name = "game_id")int game_id) {
         ModelAndView modelAndView = new ModelAndView("new_review_form");
         Review review = new Review();
         review.setGame_id(game_id);
+        FrontPageGame game = gameService.getGameFrontPage(game_id);
 
         modelAndView.addObject("review", review);
+        modelAndView.addObject("game", game);
 
         return modelAndView;
     }
@@ -46,7 +54,10 @@ public class ReviewController {
     public ModelAndView viewEditReviewPage(@PathVariable(name = "review_id")int review_id) {
         ModelAndView modelAndView = new ModelAndView("edit_review_form");
         Review review = reviewService.getReview(review_id);
+        FrontPageGame game = gameService.getGameFrontPage(review.getGame_id());
+
         modelAndView.addObject("review", review);
+        modelAndView.addObject("game", game);
 
         return modelAndView;
     }

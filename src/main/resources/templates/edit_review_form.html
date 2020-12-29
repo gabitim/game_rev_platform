@@ -12,19 +12,16 @@
 </head>
 
 <body>
-
 <div class="page">
     <div class="item">
         <a th:href="@{'/'}">
             <img   th:src="@{../../../images/Logo.jpg}"  alt="logo" width="150px" height="300px">
         </a>
     </div>
-
     <div class="item2" align="center">
-        <h1>Edit Review</h1>
-        <h2 th:object="${review}" >
-            <p th:utext="*{title}">
-        </h2>
+        <h1> WELCOME TO GAME REVIEW PLATFORM </h1>
+        <h2 th:object="${game}"><p th:utext="*{title}"> </h2>
+        <h3 th:object="${review}" >Edit review: <span th:utext="*{title}"/> </h3>
         <form action="#" th:action="@{/updateReview}" th:object="${review}" method="post">
             <input type="text" th:field="*{review_id}" hidden >
             <input type="text" th:field="*{game_id}" hidden >

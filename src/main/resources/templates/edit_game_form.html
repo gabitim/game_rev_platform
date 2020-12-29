@@ -53,15 +53,12 @@ $(function() {
     </div>
 
     <div class="item2" align="center">
-        <h1>Edit Game</h1>
+        <h1> WELCOME TO GAME REVIEW PLATFORM </h1>
+        <h2 th:object="${game}" >Edit: <span th:utext="*{title}"/> </h2>
         <br/>
-
         <form action="#" th:action="@{/updateGame}" th:object="${game}" method="post">
+            <input type="text" th:field="*{game_id}" hidden>
             <table border="1" cellpadding="10">
-                <tr>
-                    <td>Id:</td>
-                    <td><input type="text" th:field="*{game_id}" readonly></td>
-                </tr>
                 <tr>
                     <td>Title:</td>
                     <td><input type="text" th:field="*{title}" required></td>
