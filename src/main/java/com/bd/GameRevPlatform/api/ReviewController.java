@@ -41,4 +41,23 @@ public class ReviewController {
         redirectAttributes.addAttribute("game_id", review.getGame_id());
         return "redirect:/game/{game_id}";
     }
+
+    @RequestMapping("game/{game_id}/edit/{review_id}")
+    public ModelAndView viewEditReviewPage(@PathVariable(name = "review_id")int review_id) {
+        ModelAndView modelAndView = new ModelAndView("edit_review_form");
+        Review review = reviewService.getReview(review_id);
+        modelAndView.addObject("review", review);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/updateReview", method = RequestMethod.POST)
+    public String updateReview(@ModelAttribute("review") Review review, RedirectAttributes redirectAttributes) {
+        reviewService.updateReview(review);
+
+        redirectAttributes.addAttribute("game_id", review.getGame_id());
+        return "redirect:/game/{game_id}";
+    }
+
+
 }

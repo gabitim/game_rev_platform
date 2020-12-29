@@ -3,6 +3,8 @@ package com.bd.GameRevPlatform.dao;
 import com.bd.GameRevPlatform.model.Review;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -61,6 +63,14 @@ public class ReviewDao {
         review_id = keyHolder.getKey().intValue();
 
         review.setReview_id(review_id);
+    }
+
+    public void updateReview(Review review) {
+        String sql = "UPDATE Review SET title=:title, text_field=:text_field WHERE review_id=:review_id";
+        BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(review);
+        NamedParameterJdbcTemplate temp = new NamedParameterJdbcTemplate(jdbcTemplate);
+
+        temp.update(sql, param);
     }
 
     public void deleteReview(int game_id) {

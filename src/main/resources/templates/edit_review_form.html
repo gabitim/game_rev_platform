@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www..thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Review </title>
+
+    <!-- for align logo with tables-->
+    <link rel="stylesheet" type="text/css" href="/css/alignment.css"/>
+
+</head>
+
+<body>
+
+<div class="page">
+    <div class="item">
+        <a th:href="@{'/'}">
+            <img   th:src="@{../../../images/Logo.jpg}"  alt="logo" width="150px" height="300px">
+        </a>
+    </div>
+
+    <div class="item2" align="center">
+        <h1>Edit Review</h1>
+        <h2 th:object="${review}" >
+            <p th:utext="*{title}">
+        </h2>
+        <form action="#" th:action="@{/updateReview}" th:object="${review}" method="post">
+            <input type="text" th:field="*{review_id}" hidden >
+            <input type="text" th:field="*{game_id}" hidden >
+            <input type="text" th:field="*{user_id}" hidden >
+
+            <table border="1" cellpadding="10">
+                <tr>
+                    <td>Title:</td>
+                    <td><input type="text" th:field="*{title}" required></td>
+                </tr>
+                <tr>
+                    <td>Content:</td>
+                    <td><input type="text" th:field="*{text_field}" required></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button></td>
+                </tr>
+
+            </table>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

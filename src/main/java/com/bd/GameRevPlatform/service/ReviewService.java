@@ -20,6 +20,10 @@ public class ReviewService {
         this.reviewDao = reviewDao;
     }
 
+    public Review getReview(int review_id){
+        return reviewDao.getReview(review_id);
+    }
+
     public List<Review> getReviewsByGameId(int game_id) {
         return reviewDao.getReviewsByGameId(game_id);
     }
@@ -32,5 +36,9 @@ public class ReviewService {
         // until we implement User feature all reviews have dummy user_id = 1
         review.setUser_id(1);
         reviewDao.insertReview(review);
+    }
+
+    public void updateReview(Review review) {
+        reviewDao.updateReview(review);
     }
 }

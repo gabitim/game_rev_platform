@@ -53,6 +53,14 @@
                 <td th:text="${review.title}"></td>
                 <td th:text="${review.text_field}"></td>
 
+                <td> </td>
+                <!-- action column -->
+                <td>
+                    <a th:href="@{'/game/' + ${game.game_id} + '/edit/' + ${review.review_id}}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/game/' + ${game.game_id} + '/delete/' + ${review.review_id}}">Delete</a>
+                </td>
+
             </tr>
             </tbody>
 
