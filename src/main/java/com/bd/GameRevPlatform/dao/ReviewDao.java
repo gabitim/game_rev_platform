@@ -58,8 +58,6 @@ public class ReviewDao {
     }
 
     public void insertReview(Review review) {
-        System.out.println(review.getPosted_date());
-
         String insertSql = "INSERT INTO Review (title, text_field, game_id, user_id, parent_id, posted_date) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
         int review_id = 0;
@@ -83,7 +81,6 @@ public class ReviewDao {
     }
 
     public void insertComment(Review review) {
-        System.out.println(review.getPosted_date());
         String insertSql = "INSERT INTO Review (title, text_field, game_id, user_id, parent_id, posted_date) " +
                 "VALUES (?, ?, ?, ?, ?, ?)";
         int review_id = 0;
