@@ -10,12 +10,12 @@
 -- predefined type, no DDL - XMLTYPE
 
 CREATE TABLE game (
-    game_id       NUMBER(3) NOT NULL,
-    title         VARCHAR2(30) NOT NULL,
+    game_id       NUMBER(6) NOT NULL,
+    title         VARCHAR2(100) NOT NULL,
     description   VARCHAR2(400) NOT NULL,
     release_date  DATE NOT NULL,
     rating        NUMBER(2, 1) DEFAULT 1 NOT NULL,
-    news_column   VARCHAR2(300)
+    news_column   VARCHAR2(500)
 );
 
 ALTER TABLE game
@@ -38,21 +38,17 @@ ALTER TABLE gamesession ADD CONSTRAINT gamesession_pk PRIMARY KEY ( gamesession_
 
 CREATE TABLE genre (
     genre_id        NUMBER(2) NOT NULL,
-    category_label  CHAR(2) DEFAULT 'G' NOT NULL,
+    category_label  CHAR(2) NOT NULL,
     description     VARCHAR2(300)
 );
-
-ALTER TABLE genre
-    ADD CONSTRAINT category_label_ck CHECK ( category_label IN ( 'A', 'G', 'M', 'R', 'S',
-                                                                 'SH' ) );
 
 ALTER TABLE genre ADD CONSTRAINT category_pk PRIMARY KEY ( genre_id );
 
 ALTER TABLE genre ADD CONSTRAINT unique_category_label_ck UNIQUE ( category_label );
 
 CREATE TABLE genregame (
-    genre_id  NUMBER(2) NOT NULL,
-    game_id   NUMBER(3) NOT NULL
+    genre_id  NUMBER(5) NOT NULL,
+    game_id   NUMBER(6) NOT NULL
 );
 
 ALTER TABLE genregame ADD CONSTRAINT categorygame_pk PRIMARY KEY ( genre_id,
@@ -88,10 +84,12 @@ ALTER TABLE permission ADD CONSTRAINT unique_permission_name_ck UNIQUE ( permiss
 
 CREATE TABLE review (
     review_id   NUMBER(5) NOT NULL,
-    title       VARCHAR2(30),
+    title       VARCHAR2(100),
     text_field  VARCHAR2(500) NOT NULL,
-    game_id     NUMBER(3) NOT NULL,
-    user_id     NUMBER(4) NOT NULL
+    game_id     NUMBER(5) NOT NULL,
+    user_id     NUMBER(6) NOT NULL,
+    parent_id   NUMBER(5),
+    posted_date  DATE NOT NULL
 );
 
 ALTER TABLE review ADD CONSTRAINT review_pk PRIMARY KEY ( review_id );

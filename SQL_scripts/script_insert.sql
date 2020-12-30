@@ -4,7 +4,8 @@ INSERT INTO genre VALUES(2, 'G', 'generic');
 INSERT INTO genre VALUES(3, 'M', 'moba');
 INSERT INTO genre VALUES(4, 'R', 'rpg');
 INSERT INTO genre VALUES(5, 'S', 'simulation');
-INSERT INTO genre VALUES(6, 'SH', 'shoting');
+INSERT INTO genre VALUES(6, 'SH', 'shooting');
+INSERT INTO genre VALUES(7, 'P', 'platform');
 
 --insert in game
 INSERT INTO game VALUES(NULL, 'Assassins Creed: Valhalla', 
@@ -46,9 +47,9 @@ INSERT INTO genregame VALUES(1,3);
 INSERT INTO genregame VALUES(6,3);
 INSERT INTO genregame VALUES(1,2);
 INSERT INTO genregame VALUES(6,2);
-INSERT INTO genregame VALUES(1,34);
-INSERT INTO genregame VALUES(4,34);
-INSERT INTO genregame VALUES(2,34);
+INSERT INTO genregame VALUES(1,1);
+INSERT INTO genregame VALUES(4,1);
+INSERT INTO genregame VALUES(2,1);
 
 
 --insert in group
@@ -121,13 +122,13 @@ INSERT INTO gamesession VALUES(NULL, 'gooood', TO_DATE('2020/11/28 12:34:20', 'y
 INSERT INTO gamesession VALUES(NULL, 'this is the worst gameee', TO_DATE('2020/11/27 05:04:54', 'yyyy/mm/dd hh24:mi:ss'), 5, 1);
 
 --insert in review
-INSERT INTO review VALUES(NULL, 'Valhalla review', 'awsome review ', 1, 3);
-INSERT INTO review VALUES(NULL, 'money Mow', 'random review. tried to download this game on torrent. Bad experience, the game was very hard to find hacked', 5, 2);
-INSERT INTO review VALUES(NULL, NULL, 'it was realistic enough to be used for real-life flight training.', 5, 4);
-INSERT INTO review VALUES(NULL, 'Random comment', 'this a random comment ', 2, 4);
-INSERT INTO review VALUES(NULL, 'My review', 'FIFA IS BETTER THAN PES. AND THATs A FACT!!!!', 4, 1);
-INSERT INTO review VALUES(NULL, 'cyberpunkyeas', 'released in 2020', 2, 3);
-INSERT INTO review VALUES(NULL, NULL, 'i think that this game is overrated', 2, 7);
-INSERT INTO review VALUES(NULL, NULL, 'hahaha. Bad bad game', 3, 6);
+INSERT INTO review VALUES(NULL, 'Valhalla review', 'awsome review ', 1, 3, NULL, TO_DATE(sysdate));
+INSERT INTO review VALUES(NULL, 'money Mow', 'random review. tried to download this game on torrent. Bad experience, the game was very hard to find hacked', 5, 2, NULL, TO_DATE(sysdate));
+INSERT INTO review VALUES(NULL, NULL, 'it was realistic enough to be used for real-life flight training.', 5, 4, NULL, TO_DATE(sysdate));
+INSERT INTO review VALUES(NULL, 'Random comment', 'this a random comment ', 2, 4, NULL, TO_DATE(sysdate));
+INSERT INTO review VALUES(NULL, 'My review', 'FIFA IS BETTER THAN PES. AND THATs A FACT!!!!', 4, 1, NULL, TO_DATE(sysdate));
+INSERT INTO review VALUES(NULL, 'cyberpunkyeas', 'released in 2020', 2, 3, NULL, TO_DATE(sysdate));
+INSERT INTO review VALUES(NULL, NULL, 'i think that this game is overrated', 2, 7, NULL, TO_DATE(sysdate));
+INSERT INTO review VALUES(NULL, NULL, 'hahaha. Bad bad game', 3, 6, NULL, TO_DATE(sysdate));
 
 
