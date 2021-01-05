@@ -122,7 +122,7 @@ CREATE TABLE userr (
     user_id         NUMBER(4) NOT NULL,
     first_name      VARCHAR2(30) NOT NULL,
     last_name       VARCHAR2(30) NOT NULL,
-    hashedpassword  VARCHAR2(50) NOT NULL,
+    hashedpassword  VARCHAR2(64) NOT NULL,
     email           VARCHAR2(30) NOT NULL,
     join_date       DATE NOT NULL,
     group_id        NUMBER(2) NOT NULL,

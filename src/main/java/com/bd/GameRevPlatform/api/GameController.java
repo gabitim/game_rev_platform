@@ -31,7 +31,7 @@ public class GameController {
     @Autowired
     private ReviewService reviewService;
 
-    @RequestMapping("/")
+    @RequestMapping("/main_page")
     public String viewHomePage(Model model) throws ParseException {
         List<FrontPageGame> games = gameService.getAllGamesFrontPage();
 
@@ -55,7 +55,7 @@ public class GameController {
     public String saveGame(@ModelAttribute("game") FrontPageGame game) {
         gameService.saveGame(game);
 
-        return "redirect:/";
+        return "redirect:/main_page";
     }
 
     @RequestMapping("/edit/{game_id}")
@@ -74,14 +74,14 @@ public class GameController {
     public String updateGame(@ModelAttribute("game") FrontPageGame game) {
         gameService.updateGame(game);
 
-        return "redirect:/";
+        return "redirect:/main_page";
     }
 
     @RequestMapping("/delete/{game_id}")
     public String deleteGame(@PathVariable(name = "game_id")int game_id ) {
         gameService.deleteGame(game_id);
 
-        return "redirect:/";
+        return "redirect:/main_page";
     }
 
     @RequestMapping("/game/{game_id}")
