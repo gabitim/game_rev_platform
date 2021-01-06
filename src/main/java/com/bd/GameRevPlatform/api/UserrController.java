@@ -36,31 +36,31 @@ public class UserrController {
 
     @RequestMapping("/")
     public String logIn(Model model) {
-        Userr userr1 = new Userr();
-        model.addAttribute( "userr", userr1 );
+        Userr user = new Userr();
+        model.addAttribute( "userr", user );
 
-        return "log_in_form";
+        return "log_in/log_in_form";
     }
 
     @RequestMapping(value = "/checkIfUserExists", method = RequestMethod.POST)
-    public String logInUserCredentials(@ModelAttribute("userr") Userr userr, RedirectAttributes redirectAttributes) throws NoSuchAlgorithmException {
-        boolean userExists = userrService.checkValidLogin( userr );
+    public String logInUserCredentials(@ModelAttribute("userr") Userr user, RedirectAttributes redirectAttributes) throws NoSuchAlgorithmException {
+        boolean userExists = userrService.checkValidLogin( user );
 
         if (userExists) {
-            int user_id = userrService.getUserId(userr.getHashedPassword(), userr.getEmail());
+            int user_id = userrService.getUserId(user.getHashedPassword(), user.getEmail());
 
             redirectAttributes.addAttribute("user_id", user_id);
             return "redirect:/main_page/{user_id}";
         } else
-            return "unsuccessful_log_in_form";
+            return "log_in/unsuccessful_log_in_form";
     }
 
     @RequestMapping("/sign_up")
     public String signUp(Model model) {
-        Userr userr1 = new Userr();
-        model.addAttribute( "userr", userr1 );
+        Userr user = new Userr();
+        model.addAttribute( "userr", user );
 
-        return "register_account_form";
+        return "log_in/register_account_form";
     }
 
     @RequestMapping(value = "/saveUserr", method = RequestMethod.POST)
@@ -85,7 +85,7 @@ public class UserrController {
         PasswordSetter setter = new PasswordSetter();
         model.addAttribute( "setter", setter );
 
-        return "password_reset_form";
+        return "log_in/password_reset_form";
     }
 
     @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
@@ -95,7 +95,7 @@ public class UserrController {
         if (passwordChanged) {
             return "redirect:/";
         } else
-            return "unsuccessful_password_reset";
+            return "log_in/unsuccessful_password_reset";
     }
 
     @RequestMapping("/user_profile/{user_id}")
