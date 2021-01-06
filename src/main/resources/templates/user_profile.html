@@ -12,7 +12,7 @@
     <script type="text/javascript">
         function displayRowNumber()
         {
-            var table = document.getElementById("myTable"),
+            var table = document.getElementById("Reviews"),
             rows = table.getElementsByTagName('tr'),
             text = 'textContent' in document ? 'textContent' : 'innerText';
 
@@ -20,13 +20,27 @@
             rows[i].children[0][text] = i + rows[i].children[0][text];
             }
 
-            var table = document.getElementById("myTable2"),
+            var table = document.getElementById("Comments"),
             rows = table.getElementsByTagName('tr'),
             text = 'textContent' in document ? 'textContent' : 'innerText';
 
             for (var i = 1, len = rows.length; i < len; i++) {
             rows[i].children[0][text] = i + rows[i].children[0][text];
             }
+
+            getNoOfRows();
+        }
+
+        </script>
+
+    <script>
+        function getNoOfRows() {
+            var x = document.getElementById("Reviews").rows.length;
+            document.getElementById("noOfReviews").innerHTML = x - 1;
+
+            var x = document.getElementById("Comments").rows.length;
+            document.getElementById("noOfComments").innerHTML = x - 1 ;
+
         }
         </script>
 
@@ -42,7 +56,7 @@
         <h1> YOUR PROFILE </h1>
         <h2 > Your reviews </h2>
         <br/><br/>
-        <table id="myTable"  border="1" cellpadding="10" >
+        <table id="Reviews"  border="1" cellpadding="10" >
             <tr>
                 <th>No</th>
                 <th>Title</th>
@@ -74,7 +88,7 @@
         <br/><br/>
         <h2 > Your comments </h2>
         <br/><br/>
-        <table id="myTable2"  border="1" cellpadding="10" >
+        <table id="Comments"  border="1" cellpadding="10" >
             <tr>
                 <th>No</th>
                 <th>Comment</th>
@@ -104,7 +118,37 @@
     </div>
 
     <div>
-        <h3>Your profile info</h3>
+        <h2>Your info</h2>
+        <form action="#" th:object="${user}" method="post">
+            <table border="1" cellpadding="10">
+                <tr>
+                    <td>First Name:</td>
+                    <td><output type="text" ></output> <span th:utext="*{firstName}"/></td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td><output type="text" ></output> <span th:utext="*{lastName}"/></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><output type="text" ></output> <span th:utext="*{email}"/></td>
+                </tr>
+                <tr>
+                    <td>Join Date:</td>
+                    <td><output type="text" ></output> <span th:utext="*{joinDate}"/></td>
+                </tr>
+                <tr>
+                    <td>No of Reviews:</td>
+                    <td id="noOfReviews"><output type="text" ></output> </td>
+                </tr>
+                <tr>
+                    <td>No of Comments:</td>
+                    <td id="noOfComments"><output type="text" ></output> </td>
+                </tr>
+
+
+            </table>
+        </form>
     </div>
 
 </div>
