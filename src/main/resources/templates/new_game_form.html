@@ -15,6 +15,8 @@
 
     <!-- for align logo with tables-->
     <link rel="stylesheet" type="text/css" href="/css/alignment.css"/>
+    <!-- for profile avatar link-->
+    <link rel="stylesheet" type="text/css" href="/css/profile_avatar.css"/>
 
     <!-- get current date for max date validation -->
     <script>
@@ -46,8 +48,8 @@ $(function() {
 <body>
 <div class="page" >
     <div class="item">
-        <a th:href="@{'/main_page'}">
-            <img   th:src="@{images/Logo.jpg}"  alt="logo" width="150px" height="300px">
+        <a th:href="@{'/main_page/' + ${user.user_id}}">
+            <img   th:src="@{../images/Logo.jpg}"  alt="logo" width="150px" height="300px">
         </a>
     </div>
 
@@ -55,7 +57,7 @@ $(function() {
         <h1> WELCOME TO GAME REVIEW PLATFORM </h1>
         <h2> Enter new Game </h2>
         <br/>
-        <form action="#" th:action="@{/saveGame}" th:object="${game}" method="post">
+        <form action="#" th:action="@{'/' + ${user.user_id} + '/saveGame'}" th:object="${game}" method="post">
             <table border="1" cellpadding="10">
                 <tr>
                     <td>Title:</td>
@@ -92,6 +94,28 @@ $(function() {
 
             </table>
         </form>
+    </div>
+
+    <div class="flip-card">
+        <a th:href="@{'/user_profile/' + ${user.user_id}}">
+            <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img th:src="@{../images/gaming-boy-512.png}" alt="Avatar" style="width:100px;height:100px;">
+                </div>
+                <div class="flip-card-back">
+                    <h2 th:text="${user.lastName}"></h2>
+                    <h2 th:text="${user.firstName}"></h2>
+                </div>
+            </div>
+        </a>
+        <div>
+            <br>
+            <a th:href="@{'/'}">
+                <h2>
+                    Log out
+                </h2>
+            </a>
+        </div>
     </div>
 </div>
 

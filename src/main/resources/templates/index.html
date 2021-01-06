@@ -8,6 +8,7 @@
 
     <!-- for align logo with tables-->
     <link rel="stylesheet" type="text/css" href="/css/alignment.css"/>
+    <!-- for profile avatar link-->
     <link rel="stylesheet" type="text/css" href="/css/profile_avatar.css"/>
 </head>
 <body>
@@ -16,14 +17,14 @@
 
     <div class="item">
         <a th:href="@{'/main_page/' + ${user.user_id}}">
-            <img th:src="@{../images/Logo.jpg}" alt="logo" width="150px" height="300px">
+            <img th:src="@{../../images/Logo.jpg}" alt="logo" width="150px" height="300px">
         </a>
     </div>
 
     <div class="item2" align="center">
         <h1> WELCOME TO GAME REVIEW PLATFORM </h1>
         <br>
-        <a href="/newGame"> Enter New Game</a>
+        <a th:href="@{'/' + ${user.user_id} + '/newGame'}"> Enter New Game</a>
         <br/><br/>
         <table border="1" cellpadding="10">
             <thead>
@@ -39,7 +40,7 @@
 
             <tbody>
             <tr th:each="game : ${games}">
-                <td><a th:text="${game.title}" th:href="@{'/game/' + ${game.game_id}}"> </a></td>
+                <td><a th:text="${game.title}" th:href="@{'/' + ${user.user_id} + '/game/' + ${game.game_id}}"> </a></td>
                 <td th:text="${game.description}"></td>
                 <td th:text="${game.release_date_string}"></td>
                 <td th:text="${game.rating}"></td>
@@ -47,9 +48,9 @@
 
                 <!-- action column -->
                 <td>
-                    <a th:href="@{'/edit/' + ${game.game_id}}">Edit</a>
+                    <a th:href="@{'/' + ${user.user_id} + '/edit/' + ${game.game_id}}">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a th:href="@{'/delete/' + ${game.game_id}}">Delete</a>
+                    <a th:href="@{'/' + ${user.user_id} + '/delete/' + ${game.game_id}}">Delete</a>
                 </td>
 
             </tr>
@@ -58,7 +59,6 @@
         </table>
 
     </div>
-
 
     <div class="flip-card">
         <a th:href="@{'/user_profile/' + ${user.user_id}}">
@@ -73,7 +73,12 @@
             </div>
         </a>
         <div>
-            <a th:href="@{'/'}"> Log out</a>
+            <br>
+            <a th:href="@{'/'}">
+                <h2>
+                    Log out
+                </h2>
+            </a>
         </div>
     </div>
 
