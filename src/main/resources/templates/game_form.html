@@ -32,14 +32,14 @@
             <img   th:src="@{../../images/Logo.jpg}"  alt="logo" width="150px" height="300px">
         </a>
         <h2 >
-            <a th:href="@{'/game/' + ${game.game_id}}">All Reviews</a>
+            <a th:href="@{'/' + ${user.user_id} +'/game/' + ${game.game_id}}">All Reviews</a>
         </h2>
     </div>
 
     <div class="item2" align="center">
         <h1> WELCOME TO GAME REVIEW PLATFORM </h1>
         <h2 th:object="${game}"> Game: <span th:utext="*{title}"/> </h2>
-        <a th:href="@{'/game/' + ${game.game_id} + '/newReview'}"> Add new Review</a>
+        <a th:href="@{'/' + ${user.user_id} + '/game/' + ${game.game_id} + '/newReview'}"> Add new Review</a>
         <br/><br/>
         <table id="myTable"  border="1" cellpadding="10" >
             <tr>
@@ -54,16 +54,16 @@
             <tbody>
             <tr th:each="review : ${reviews}">
                 <td> </td>
-                <td> <a th:text="${review.title}" th:href="@{'/game/' + ${game.game_id} + '/review/' + ${review.review_id}}" > </a> </td>
+                <td> <a th:text="${review.title}" th:href="@{'/' + ${user.user_id} + '/game/' + ${game.game_id} + '/review/' + ${review.review_id}}" > </a> </td>
                 <td th:text="${review.text_field}"></td>
                 <td th:text="${review.posted_date}"></td>
 
                 <td> </td>
                 <!-- action column -->
                 <td>
-                    <a th:href="@{'/game/' + ${game.game_id} + '/edit/' + ${review.review_id}}">Edit</a>
+                    <a th:href="@{'/' + ${user.user_id} + '/game/' + ${game.game_id} + '/edit/' + ${review.review_id}}">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a th:href="@{'/game/' + ${game.game_id} + '/delete/' + ${review.review_id}}">Delete</a>
+                    <a th:href="@{'/' + ${user.user_id} + '/game/' + ${game.game_id} + '/delete/' + ${review.review_id}}">Delete</a>
                 </td>
 
             </tr>
