@@ -2,9 +2,11 @@ package com.bd.GameRevPlatform.api;
 
 import com.bd.GameRevPlatform.model.Genre;
 import com.bd.GameRevPlatform.model.Review;
+import com.bd.GameRevPlatform.model.Userr;
 import com.bd.GameRevPlatform.service.GameService;
 import com.bd.GameRevPlatform.service.GenreService;
 import com.bd.GameRevPlatform.service.ReviewService;
+import com.bd.GameRevPlatform.service.UserrService;
 import com.bd.GameRevPlatform.service.game.FrontPageGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,11 +33,16 @@ public class GameController {
     @Autowired
     private ReviewService reviewService;
 
-    @RequestMapping("/main_page")
-    public String viewHomePage(Model model) throws ParseException {
+    @Autowired
+    private UserrService userrService;
+
+    @RequestMapping("/main_page/{user_id}")
+    public String viewHomePage(Model model, @PathVariable(name = "user_id")int user_id) throws ParseException {
         List<FrontPageGame> games = gameService.getAllGamesFrontPage();
+        Userr userr = userrService.getUserById(user_id);
 
         model.addAttribute("games", games);
+        model.addAttribute("user", userr);
 
         return "index";
     }

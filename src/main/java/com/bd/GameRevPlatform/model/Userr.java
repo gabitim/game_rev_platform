@@ -5,7 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.sql.Date;
 
 public class Userr {
-    private int    userr_id;
+    private int    user_id;
     private String firstName;
     private String lastName;
     private String hashedPassword;
@@ -33,12 +33,12 @@ public class Userr {
         this.role_id = role_id;
     }
 
-    public int getUserr_id() {
-        return userr_id;
+    public int getUser_id() {
+        return user_id;
     }
 
-    public void setUserr_id(int userr_id) {
-        this.userr_id = userr_id;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public String getFirstName() {
@@ -100,7 +100,7 @@ public class Userr {
     @Override
     public String toString() {
         return "Userr{" +
-                "userr_id=" + userr_id +
+                "user_id=" + user_id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", hashedPassword='" + hashedPassword + '\'' +

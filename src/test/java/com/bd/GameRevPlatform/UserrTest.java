@@ -23,7 +23,7 @@ public class UserrTest {
     void setUp() throws Exception {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl( "jdbc:oracle:thin:@localhost:1521:xe" );
-        dataSource.setUsername( "game_rev_db_v3" );
+        dataSource.setUsername( "game_rev_db_new" );
         dataSource.setPassword( "bunica" );
         dataSource.setDriverClassName( "oracle.jdbc.OracleDriver" );
 

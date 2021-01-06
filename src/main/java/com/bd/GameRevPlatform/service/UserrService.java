@@ -81,4 +81,19 @@ public class UserrService {
         int numberOfRowsAffected = userDao.updatePassword( setter.getEmail(), hashedPassword );
         return numberOfRowsAffected == 1;
     }
+
+    public Userr getUserById(int user_id){
+        if (user_id != 0) {
+            return userDao.getUserrById(user_id);
+        }
+        else {
+            // to complete with dummy guest
+            return new Userr();
+        }
+    }
+
+    public int getUserId(String rawHashedPassword, String email) throws NoSuchAlgorithmException {
+        String hashedPassword = UserrService.getStringFromSHA256( rawHashedPassword );
+        return userDao.getUserIdByCredentials(hashedPassword, email);
+    }
 }

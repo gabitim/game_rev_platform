@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.sql.PreparedStatement;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class UserDao {
@@ -49,6 +50,14 @@ public class UserDao {
         }
 
         return result;
+    }
+
+    public int getUserIdByCredentials(String hashedPassword, String email) {
+
+        String sql  = "SELECT user_id FROM Userr WHERE EMAIL = ? and HASHEDPASSWORD = ?";
+        Object[] args = { email, hashedPassword };
+        int id = Objects.requireNonNull(jdbcTemplate.queryForObject(sql, args, Integer.class));
+        return id;
     }
 
     public Userr getUserByEmail(String email) { // for log-in purposes
@@ -88,9 +97,8 @@ public class UserDao {
         }, keyHolder );
 
         userr_id = keyHolder.getKey().intValue();
-        userr.setUserr_id( userr_id );
+        userr.setUser_id( userr_id );
     }
-
 
     public int updatePassword(String email, String hashedPassword) {
         String   sql    = "UPDATE Userr set HASHEDPASSWORD = ? where EMAIL = ?";

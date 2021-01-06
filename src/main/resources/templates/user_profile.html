@@ -34,7 +34,7 @@
 <body onload="displayRowNumber()" >
 <div class="page">
     <div class="item">
-        <a th:href="@{'/main_page'}">
+        <a th:href="@{'/main_page/' + ${user.user_id}}">
             <img   th:src="@{../images/Logo.jpg}"  alt="logo" width="150px" height="300px">
         </a>
     </div>

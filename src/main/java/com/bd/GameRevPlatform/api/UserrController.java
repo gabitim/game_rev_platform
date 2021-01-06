@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
@@ -42,12 +43,14 @@ public class UserrController {
     }
 
     @RequestMapping(value = "/checkIfUserExists", method = RequestMethod.POST)
-    public String logInUserCredentials(@ModelAttribute("userr") Userr userr) throws NoSuchAlgorithmException {
+    public String logInUserCredentials(@ModelAttribute("userr") Userr userr, RedirectAttributes redirectAttributes) throws NoSuchAlgorithmException {
         boolean userExists = userrService.checkValidLogin( userr );
 
         if (userExists) {
-            // ! populate the userr object with the rest of the fields from the db (apart from email and password)
-            return "redirect:/main_page";
+            int user_id = userrService.getUserId(userr.getHashedPassword(), userr.getEmail());
+
+            redirectAttributes.addAttribute("user_id", user_id);
+            return "redirect:/main_page/{user_id}";
         } else
             return "unsuccessful_log_in_form";
     }
@@ -73,7 +76,7 @@ public class UserrController {
 
     @RequestMapping("/guest_log_in")
     public String logInGuest() {
-        return "redirect:/main_page";
+        return "redirect:/main_page/0";
     }
 
 
@@ -95,15 +98,11 @@ public class UserrController {
             return "unsuccessful_password_reset";
     }
 
-    @RequestMapping("/user_profile")
-    public String viewUserPage(Model model) {
-        //User user = userrService.getCurrentuser();
-        List<Review> userReviews = reviewService.getReviewsByUserId(1);
-        List<Review> userComments = reviewService.getCommentsByUserId(1);
-        Userr user = new Userr();
-        user.setFirstName("Gabi");
-        user.setLastName("Tim");
-        user.setUserr_id(1);
+    @RequestMapping("/user_profile/{user_id}")
+    public String viewUserPage(Model model, @PathVariable(name = "user_id")int user_id) {
+        List<Review> userReviews = reviewService.getReviewsByUserId(user_id);
+        List<Review> userComments = reviewService.getCommentsByUserId(user_id);
+        Userr user = userrService.getUserById(user_id);
 
         model.addAttribute("reviews", userReviews);
         model.addAttribute("comments", userComments);
