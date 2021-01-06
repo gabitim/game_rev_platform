@@ -1,14 +1,12 @@
 package com.bd.GameRevPlatform.api;
 
-import com.bd.GameRevPlatform.model.Genre;
-import com.bd.GameRevPlatform.model.PasswordSetter;
-import com.bd.GameRevPlatform.model.Review;
-import com.bd.GameRevPlatform.model.Userr;
+import com.bd.GameRevPlatform.model.*;
 import com.bd.GameRevPlatform.service.GameService;
 import com.bd.GameRevPlatform.service.GenreService;
 import com.bd.GameRevPlatform.service.ReviewService;
 import com.bd.GameRevPlatform.service.UserrService;
 import com.bd.GameRevPlatform.service.game.FrontPageGame;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +29,9 @@ public class UserrController {
 
     @Autowired
     private UserrService userrService;
+
+    @Autowired
+    private ReviewService reviewService;
 
     @RequestMapping("/")
     public String logIn(Model model) {
@@ -92,5 +93,22 @@ public class UserrController {
             return "redirect:/";
         } else
             return "unsuccessful_password_reset";
+    }
+
+    @RequestMapping("/user_profile")
+    public String viewUserPage(Model model) {
+        //User user = userrService.getCurrentuser();
+        List<Review> userReviews = reviewService.getReviewsByUserId(1);
+        List<Review> userComments = reviewService.getCommentsByUserId(1);
+        Userr user = new Userr();
+        user.setFirstName("Gabi");
+        user.setLastName("Tim");
+        user.setUserr_id(1);
+
+        model.addAttribute("reviews", userReviews);
+        model.addAttribute("comments", userComments);
+        model.addAttribute("user", user);
+
+        return "user_profile";
     }
 }

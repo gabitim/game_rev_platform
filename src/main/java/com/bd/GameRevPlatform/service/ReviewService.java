@@ -29,6 +29,14 @@ public class ReviewService {
         return reviewDao.getReviewsByGameId(game_id);
     }
 
+    public List<Review> getReviewsByUserId(int user_id) {
+        return reviewDao.getReviewsByUserId(user_id);
+    }
+
+    public List<Review> getCommentsByUserId(int user_id) {
+        return reviewDao.getCommentsByUserId(user_id);
+    }
+
     public List<Review> getComments(int parent_id){
         return reviewDao.getCommentsByParentId(parent_id);
     }

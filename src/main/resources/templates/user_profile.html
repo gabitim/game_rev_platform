@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www..thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Reviews</title>
+
+    <!-- for align logo with tables-->
+    <link rel="stylesheet" type="text/css" href="/css/alignment.css"/>
+
+    <script type="text/javascript">
+        function displayRowNumber()
+        {
+            var table = document.getElementById("myTable"),
+            rows = table.getElementsByTagName('tr'),
+            text = 'textContent' in document ? 'textContent' : 'innerText';
+
+            for (var i = 1, len = rows.length; i < len; i++) {
+            rows[i].children[0][text] = i + rows[i].children[0][text];
+            }
+
+            var table = document.getElementById("myTable2"),
+            rows = table.getElementsByTagName('tr'),
+            text = 'textContent' in document ? 'textContent' : 'innerText';
+
+            for (var i = 1, len = rows.length; i < len; i++) {
+            rows[i].children[0][text] = i + rows[i].children[0][text];
+            }
+        }
+        </script>
+
+</head>
+<body onload="displayRowNumber()" >
+<div class="page">
+    <div class="item">
+        <a th:href="@{'/main_page'}">
+            <img   th:src="@{../images/Logo.jpg}"  alt="logo" width="150px" height="300px">
+        </a>
+    </div>
+    <div class="item2" align="center">
+        <h1> YOUR PROFILE </h1>
+        <h2 > Your reviews </h2>
+        <br/><br/>
+        <table id="myTable"  border="1" cellpadding="10" >
+            <tr>
+                <th>No</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th>Posted On</th>
+                <th>Author</th>
+                <th>Actions</th>
+            </tr>
+
+            <tbody>
+            <tr th:each="review : ${reviews}">
+                <td> </td>
+                <td> <a th:text="${review.title}" th:href="@{'/game/' + ${review.game_id} + '/review/' + ${review.review_id}}" > </a> </td>
+                <td th:text="${review.text_field}"></td>
+                <td th:text="${review.posted_date}"></td>
+
+                <td> </td>
+                <!-- action column -->
+                <td>
+                    <a th:href="@{'/game/' + ${review.game_id} + '/edit/' + ${review.review_id}}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/game/' + ${review.game_id} + '/delete/' + ${review.review_id}}">Delete</a>
+                </td>
+
+            </tr>
+            </tbody>
+
+        </table>
+        <br/><br/>
+        <h2 > Your comments </h2>
+        <br/><br/>
+        <table id="myTable2"  border="1" cellpadding="10" >
+            <tr>
+                <th>No</th>
+                <th>Comment</th>
+                <th>Posted On</th>
+                <th>Author</th>
+                <th>Actions</th>
+            </tr>
+
+            <tbody>
+            <tr th:each="comment : ${comments}">
+                <td> </td>
+                <td th:text="${comment.text_field}"></td>
+                <td th:text="${comment.posted_date}"></td>
+                <td> </td>
+                <!-- action column -->
+                <td>
+                    <a th:href="@{'/game/' + ${comment.game_id} + '/review/' + ${comment.parent_id} + '/edit/' + ${comment.review_id}}">Edit</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a th:href="@{'/game/' + ${comment.game_id} + '/review/' + ${comment.parent_id}} + '/delete/' + ${comment.review_id}">Delete</a>
+                </td>
+
+            </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div>
+        <h3>Your profile info</h3>
+    </div>
+
+</div>
+
+</body>
+</html>
