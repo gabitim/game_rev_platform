@@ -92,6 +92,13 @@ public class UserrService {
         }
     }
 
+    public String getUserNameById(int user_id){
+        String firstName = userDao.getUserFirstNameById(user_id);
+        String lastName = userDao.getUserLastNameById(user_id);
+
+        return lastName + " " + firstName;
+    }
+
     public int getUserId(String rawHashedPassword, String email) throws NoSuchAlgorithmException {
         String hashedPassword = UserrService.getStringFromSHA256(rawHashedPassword);
         //convert real user_id to random user_id
@@ -121,7 +128,6 @@ public class UserrService {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNext()) {
                 String data = scanner.nextLine();
-                System.out.println(data);
                 String[] pair = data.split(":");
 
                 if (Integer.parseInt(pair[0]) == randomUser_id) {

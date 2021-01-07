@@ -72,16 +72,15 @@
             <tbody>
             <tr th:each="review : ${reviews}">
                 <td> </td>
-                <td> <a th:text="${review.title}" th:href="@{'/game/' + ${review.game_id} + '/review/' + ${review.review_id}}" > </a> </td>
+                <td> <a th:text="${review.title}" th:href="@{'/' + ${user.user_id} + '/game/' + ${review.game_id} + '/review/' + ${review.review_id}}" > </a> </td>
                 <td th:text="${review.text_field}"></td>
                 <td th:text="${review.posted_date}"></td>
-
-                <td> </td>
+                <td th:text="${review.author}" > </td>
                 <!-- action column -->
                 <td>
-                    <a th:href="@{'/game/' + ${review.game_id} + '/edit/' + ${review.review_id}}">Edit</a>
+                    <a th:href="@{'/' + ${user.user_id} + '/game/' + ${review.game_id} + '/edit/' + ${review.review_id}}">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a th:href="@{'/game/' + ${review.game_id} + '/delete/' + ${review.review_id}}">Delete</a>
+                    <a th:href="@{'/' + ${user.user_id} + '/game/' + ${review.game_id} + '/delete/' + ${review.review_id}}">Delete</a>
                 </td>
 
             </tr>
@@ -105,12 +104,12 @@
                 <td> </td>
                 <td th:text="${comment.text_field}"></td>
                 <td th:text="${comment.posted_date}"></td>
-                <td> </td>
+                <td th:text="${comment.author}" > </td>
                 <!-- action column -->
                 <td>
-                    <a th:href="@{'/game/' + ${comment.game_id} + '/review/' + ${comment.parent_id} + '/edit/' + ${comment.review_id}}">Edit</a>
+                    <a th:href="@{'/' + ${user.user_id} + '/game/' + ${comment.game_id} + '/review/' + ${comment.parent_id} + '/edit/' + ${comment.review_id}}">Edit</a>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <a th:href="@{'/game/' + ${comment.game_id} + '/review/' + ${comment.parent_id}} + '/delete/' + ${comment.review_id}">Delete</a>
+                    <a th:href="@{'/' + ${user.user_id} + '/game/' + ${comment.game_id} + '/review/' + ${comment.parent_id}} + '/delete/' + ${comment.review_id}">Delete</a>
                 </td>
 
             </tr>
@@ -120,7 +119,7 @@
 
     </div>
 
-    <div>
+    <div class="your-info">
         <h2>Your info</h2>
         <form action="#" th:object="${user}" method="post">
             <table border="1" cellpadding="10">

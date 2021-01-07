@@ -6,6 +6,7 @@ import com.bd.GameRevPlatform.service.GameService;
 import com.bd.GameRevPlatform.service.ReviewService;
 import com.bd.GameRevPlatform.service.UserrService;
 import com.bd.GameRevPlatform.service.game.FrontPageGame;
+import com.bd.GameRevPlatform.service.review.DisplayedReview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -55,7 +56,7 @@ public class ReviewController {
     public String saveReview(@ModelAttribute("review") Review review,
                              @PathVariable(name = "user_id")int user_id,
                              RedirectAttributes redirectAttributes) {
-        reviewService.saveReview(review);
+        reviewService.saveReview(review, user_id);
 
         redirectAttributes.addAttribute("game_id", review.getGame_id());
         redirectAttributes.addAttribute("user_id", user_id);
@@ -81,7 +82,7 @@ public class ReviewController {
     public String updateReview(@ModelAttribute("review") Review review,
                                @PathVariable(name = "user_id")int user_id,
                                RedirectAttributes redirectAttributes) {
-        reviewService.updateReview(review);
+        reviewService.updateReview(review, user_id);
 
         redirectAttributes.addAttribute("game_id", review.getGame_id());
         redirectAttributes.addAttribute("user_id", user_id);
@@ -105,7 +106,7 @@ public class ReviewController {
                                    @PathVariable(name="parent_id")int parent_id,
                                    @PathVariable(name = "user_id")int user_id){
         ModelAndView modelAndView = new ModelAndView("review_form");
-        List<Review> comments = reviewService.getComments(parent_id);
+        List<DisplayedReview> comments = reviewService.getComments(parent_id);
         FrontPageGame frontPageGame = gameService.getGameFrontPage(game_id); //for displaying game title
         Review review = reviewService.getReview(parent_id); // for displaying review title
         Userr user = userrService.getUserById(user_id);
@@ -142,7 +143,7 @@ public class ReviewController {
     public String saveComment(@ModelAttribute("comment") Review comment,
                               @PathVariable(name="user_id")int user_id,
                               RedirectAttributes redirectAttributes) {
-        reviewService.saveComment(comment);
+        reviewService.saveComment(comment, user_id);
 
         redirectAttributes.addAttribute("game_id", comment.getGame_id());
         redirectAttributes.addAttribute("parent_id", comment.getParent_id());
@@ -171,7 +172,7 @@ public class ReviewController {
     public String updateComment(@ModelAttribute("comment") Review comment,
                                 @PathVariable(name = "user_id")int user_id,
                                 RedirectAttributes redirectAttributes) {
-        reviewService.updateReview(comment);
+        reviewService.updateReview(comment, user_id);
 
         redirectAttributes.addAttribute("game_id", comment.getGame_id());
         redirectAttributes.addAttribute("parent_id", comment.getParent_id());

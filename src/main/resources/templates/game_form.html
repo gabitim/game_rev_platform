@@ -58,7 +58,7 @@
                 <td th:text="${review.text_field}"></td>
                 <td th:text="${review.posted_date}"></td>
 
-                <td> </td>
+                <td th:text="${review.author}" ></td>
                 <!-- action column -->
                 <td>
                     <a th:href="@{'/' + ${user.user_id} + '/game/' + ${game.game_id} + '/edit/' + ${review.review_id}}">Edit</a>

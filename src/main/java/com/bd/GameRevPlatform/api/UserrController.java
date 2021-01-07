@@ -1,12 +1,9 @@
 package com.bd.GameRevPlatform.api;
 
 import com.bd.GameRevPlatform.model.*;
-import com.bd.GameRevPlatform.service.GameService;
-import com.bd.GameRevPlatform.service.GenreService;
 import com.bd.GameRevPlatform.service.ReviewService;
 import com.bd.GameRevPlatform.service.UserrService;
-import com.bd.GameRevPlatform.service.game.FrontPageGame;
-import org.apache.catalina.User;
+import com.bd.GameRevPlatform.service.review.DisplayedReview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.text.ParseException;
 import java.util.List;
 
 /**
@@ -101,8 +96,8 @@ public class UserrController {
 
     @RequestMapping("/user_profile/{user_id}")
     public String viewUserPage(Model model, @PathVariable(name = "user_id")int user_id) {
-        List<Review> userReviews = reviewService.getReviewsByUserId(user_id);
-        List<Review> userComments = reviewService.getCommentsByUserId(user_id);
+        List<DisplayedReview> userReviews = reviewService.getReviewsByUserId(user_id);
+        List<DisplayedReview> userComments = reviewService.getCommentsByUserId(user_id);
         Userr user = userrService.getUserById(user_id);
 
         model.addAttribute("reviews", userReviews);

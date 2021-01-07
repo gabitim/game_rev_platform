@@ -56,8 +56,7 @@ public class UserDao {
 
         String sql  = "SELECT user_id FROM Userr WHERE EMAIL = ? and HASHEDPASSWORD = ?";
         Object[] args = { email, hashedPassword };
-        int id = Objects.requireNonNull(jdbcTemplate.queryForObject(sql, args, Integer.class));
-        return id;
+        return Objects.requireNonNull(jdbcTemplate.queryForObject(sql, args, Integer.class));
     }
 
     public Userr getUserByEmail(String email) { // for log-in purposes
@@ -72,6 +71,18 @@ public class UserDao {
         }
 
         return result;
+    }
+
+    public String getUserFirstNameById(int user_id){
+        String sql = "SELECT first_name FROM Userr WHERE user_id = ?";
+        Object[] args = {user_id};
+        return Objects.requireNonNull(jdbcTemplate.queryForObject(sql, args, String.class));
+    }
+
+    public String getUserLastNameById(int user_id){
+        String sql = "SELECT last_name FROM Userr WHERE user_id = ?";
+        Object[] args = {user_id};
+        return Objects.requireNonNull(jdbcTemplate.queryForObject(sql, args, String.class));
     }
 
     public void insertUserr(Userr userr) { // for register purposes

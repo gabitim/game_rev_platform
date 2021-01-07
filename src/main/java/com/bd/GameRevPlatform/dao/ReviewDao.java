@@ -118,7 +118,7 @@ public class ReviewDao {
     }
 
     public void updateReview(Review review) {
-        String sql = "UPDATE Review SET title=:title, text_field=:text_field, " +
+        String sql = "UPDATE Review SET title=:title, text_field=:text_field, user_id=:user_id," +
                 "posted_date=:posted_date WHERE review_id=:review_id";
         BeanPropertySqlParameterSource param = new BeanPropertySqlParameterSource(review);
         NamedParameterJdbcTemplate temp = new NamedParameterJdbcTemplate(jdbcTemplate);

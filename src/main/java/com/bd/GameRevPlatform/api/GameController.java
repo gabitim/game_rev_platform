@@ -1,13 +1,14 @@
 package com.bd.GameRevPlatform.api;
 
 import com.bd.GameRevPlatform.model.Genre;
-import com.bd.GameRevPlatform.model.Review;
 import com.bd.GameRevPlatform.model.Userr;
 import com.bd.GameRevPlatform.service.GameService;
 import com.bd.GameRevPlatform.service.GenreService;
 import com.bd.GameRevPlatform.service.ReviewService;
 import com.bd.GameRevPlatform.service.UserrService;
 import com.bd.GameRevPlatform.service.game.FrontPageGame;
+import com.bd.GameRevPlatform.service.review.DisplayedReview;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -110,7 +111,7 @@ public class GameController {
     public ModelAndView viewGame(@PathVariable(name = "game_id")int game_id,
                                  @PathVariable(name = "user_id")int user_id) {
         ModelAndView modelAndView = new ModelAndView("game_form");
-        List<Review> reviews = reviewService.getReviewsByGameId(game_id);
+        List<DisplayedReview> reviews = reviewService.getReviewsByGameId(game_id);
         FrontPageGame frontPageGame = gameService.getGameFrontPage(game_id); //for displaying game title
         Userr userr = userrService.getUserById(user_id);
 
