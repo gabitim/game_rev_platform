@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.List;
@@ -43,7 +44,7 @@ public class UserrController {
     }
 
     @RequestMapping(value = "/checkIfUserExists", method = RequestMethod.POST)
-    public String logInUserCredentials(@ModelAttribute("userr") Userr user, RedirectAttributes redirectAttributes) throws NoSuchAlgorithmException {
+    public String logInUserCredentials(@ModelAttribute("userr") Userr user, RedirectAttributes redirectAttributes) throws NoSuchAlgorithmException, IOException {
         boolean userExists = userrService.checkValidLogin( user );
 
         if (userExists) {
