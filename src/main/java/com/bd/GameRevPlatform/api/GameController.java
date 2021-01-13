@@ -91,7 +91,7 @@ public class GameController {
     @RequestMapping(value = "/{user_id}/updateGame", method = RequestMethod.POST)
     public String updateGame(@ModelAttribute("game") FrontPageGame game,
                              @PathVariable(name = "user_id")int user_id,
-                             RedirectAttributes redirectAttributes) {
+                             RedirectAttributes redirectAttributes) throws SQLException {
         gameService.updateGame(game);
 
         redirectAttributes.addAttribute("user_id", user_id);

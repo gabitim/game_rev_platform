@@ -88,7 +88,7 @@ public class GameService {
         return frontPageGame;
     }
 
-    public void updateGame(FrontPageGame frontPageGame){
+    public void updateGame(FrontPageGame frontPageGame) throws SQLException {
         gameDao.updateGame(frontPageGame);
         genreGameService.updateGenreGame(frontPageGame.getGame_id(), frontPageGame.getGenre());
     }
@@ -96,7 +96,7 @@ public class GameService {
     public void deleteGame(int game_id) throws SQLException, ClassNotFoundException {
         gameSessionService.deleteGameSession(game_id);
         reviewService.deleteReviewsByGameId(game_id);
-        genreGameService.deleteGenreGame(game_id);
+        genreGameService.deleteGenreGameByGameId(game_id);
 
         gameDao.deleteGame(game_id);
     }
