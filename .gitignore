@@ -37,6 +37,7 @@ out/
 .vscode/
 
 #files
+src/main/java/com/bd/GameRevPlatform/service/user/user_data.txt
 
 #silviu & Gabi
 src/main/resources/application.properties
