@@ -6,6 +6,7 @@ import com.bd.GameRevPlatform.service.review.DisplayedReview;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -54,7 +55,7 @@ public class ReviewService {
         return this.convertReviewToDisplayedReview(comments);
     }
 
-    public void deleteReviewsByGameId(int game_id){
+    public void deleteReviewsByGameId(int game_id) throws SQLException, ClassNotFoundException {
         reviewDao.deleteReviewsByGameId(game_id);
     }
 
