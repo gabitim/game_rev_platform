@@ -5,6 +5,7 @@ import com.bd.GameRevPlatform.model.GenreGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -44,13 +45,13 @@ public class GenreGameService {
         }
     }
 
-    public void updateGenreGame(int game_id, String genres) {
+    public void updateGenreGame(int game_id, String genres) throws SQLException {
         genreGameDao.deleteGenreGame(game_id);
         this.saveGenreGame(game_id, genres);
     }
 
-    public void deleteGenreGame(int game_id){
-        genreGameDao.deleteGenreGame(game_id);
+    public void deleteGenreGameByGameId(int game_id) throws SQLException {
+        genreGameDao.deleteGenreGameByGameId(game_id);
     }
 
 }

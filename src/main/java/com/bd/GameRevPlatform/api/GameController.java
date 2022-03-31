@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.List;
 
@@ -90,7 +91,7 @@ public class GameController {
     @RequestMapping(value = "/{user_id}/updateGame", method = RequestMethod.POST)
     public String updateGame(@ModelAttribute("game") FrontPageGame game,
                              @PathVariable(name = "user_id")int user_id,
-                             RedirectAttributes redirectAttributes) {
+                             RedirectAttributes redirectAttributes) throws SQLException {
         gameService.updateGame(game);
 
         redirectAttributes.addAttribute("user_id", user_id);
@@ -100,7 +101,7 @@ public class GameController {
     @RequestMapping("/{user_id}/delete/{game_id}")
     public String deleteGame(@PathVariable(name = "game_id")int game_id,
                              @PathVariable(name = "user_id")int user_id,
-                             RedirectAttributes redirectAttributes) {
+                             RedirectAttributes redirectAttributes) throws SQLException, ClassNotFoundException {
         gameService.deleteGame(game_id);
 
         redirectAttributes.addAttribute("user_id", user_id);

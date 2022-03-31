@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -93,7 +94,7 @@ public class ReviewController {
     public String deleteReview(@PathVariable(name="game_id")int game_id,
                                @PathVariable(name = "review_id")int review_id,
                                @PathVariable(name = "user_id")int user_id,
-                               RedirectAttributes redirectAttributes) {
+                               RedirectAttributes redirectAttributes) throws SQLException {
         reviewService.deleteReview(review_id);
 
         redirectAttributes.addAttribute("game_id", game_id);
@@ -185,7 +186,7 @@ public class ReviewController {
                                 @PathVariable(name = "review_id")int review_id,
                                 @PathVariable(name = "comment_id")int comment_id,
                                 @PathVariable(name = "user_id")int user_id,
-                               RedirectAttributes redirectAttributes) {
+                               RedirectAttributes redirectAttributes) throws SQLException {
         reviewService.deleteComment(comment_id);
 
         redirectAttributes.addAttribute("game_id", game_id);

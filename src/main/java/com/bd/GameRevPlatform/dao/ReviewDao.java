@@ -5,19 +5,25 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
  * @author Timofti Gabriel
  */
 
+
+
 @Repository
 public class ReviewDao {
+
     private JdbcTemplate jdbcTemplate;
 
     public ReviewDao(JdbcTemplate jdbcTemplate) {
@@ -126,9 +132,31 @@ public class ReviewDao {
         temp.update(sql, param);
     }
 
-    public void deleteReviewsByGameId(int game_id) {
-        String sql = "DELETE from Review WHERE game_id = ?";
-        jdbcTemplate.update(sql, game_id);
+    public void deleteReviewsByGameId(int game_id) throws SQLException {
+
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
+        dataSource.setUsername("game_rev_db_new");
+        dataSource.setPassword("bunica");
+        dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
+
+        Connection conn = dataSource.getConnection();
+        try {
+            conn.setAutoCommit(false);
+
+            String sql = "DELETE from Review WHERE game_id = ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1, game_id);
+            st.executeUpdate();
+
+            //conn.commit();
+        } catch (SQLException e) {
+            conn.rollback();
+            e.printStackTrace();
+        }
+        finally {
+            conn.close();
+        }
     }
 
     public void deleteCommentsByParentId(int parent_id) {
@@ -139,5 +167,6 @@ public class ReviewDao {
     public void deleteReview(int review_id) {
         String sql = "DELETE from Review WHERE review_id = ?";
         jdbcTemplate.update(sql, review_id);
+
     }
 }

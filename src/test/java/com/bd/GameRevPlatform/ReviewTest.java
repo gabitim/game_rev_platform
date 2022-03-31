@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -53,5 +54,11 @@ public class ReviewTest {
         List<Review> reviews = reviewDao.getReviewsByGameId(game_id);
 
         assertFalse(reviews.isEmpty());
+    }
+
+    @Test
+    void testDeleteReviewByGameId() throws SQLException {
+        int game_id = 11;
+        reviewDao.deleteReviewsByGameId(game_id);
     }
 }

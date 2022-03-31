@@ -2,8 +2,12 @@ package com.bd.GameRevPlatform.dao;
 
 import com.bd.GameRevPlatform.model.GenreGame;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
 import java.util.Objects;
@@ -48,5 +52,31 @@ public class GenreGameDao {
     public void deleteGenreGame(int game_id) {
         String sql = "DELETE from GenreGame WHERE game_id = ?";
         jdbcTemplate.update(sql, game_id);
+    }
+
+    public void deleteGenreGameByGameId(int game_id) throws SQLException {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
+        dataSource.setUsername("game_rev_db_new");
+        dataSource.setPassword("bunica");
+        dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
+
+        Connection conn = dataSource.getConnection();
+        try {
+            conn.setAutoCommit(false);
+
+            String sql = "DELETE from GenreGame WHERE game_id = ?";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1, game_id);
+            st.executeUpdate();
+
+            //conn.commit();
+        } catch (SQLException e) {
+            conn.rollback();
+            e.printStackTrace();
+        }
+        finally {
+            conn.close();
+        }
     }
 }

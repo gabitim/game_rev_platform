@@ -6,6 +6,7 @@ import com.bd.GameRevPlatform.service.game.FrontPageGame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -87,15 +88,15 @@ public class GameService {
         return frontPageGame;
     }
 
-    public void updateGame(FrontPageGame frontPageGame){
+    public void updateGame(FrontPageGame frontPageGame) throws SQLException {
         gameDao.updateGame(frontPageGame);
         genreGameService.updateGenreGame(frontPageGame.getGame_id(), frontPageGame.getGenre());
     }
 
-    public void deleteGame(int game_id){
+    public void deleteGame(int game_id) throws SQLException, ClassNotFoundException {
         gameSessionService.deleteGameSession(game_id);
         reviewService.deleteReviewsByGameId(game_id);
-        genreGameService.deleteGenreGame(game_id);
+        genreGameService.deleteGenreGameByGameId(game_id);
 
         gameDao.deleteGame(game_id);
     }
